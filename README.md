@@ -16,4 +16,5 @@
 压缩css文件
 	
 	#压缩保障tip的css文件
-	cleancss -o ./output/guarantee.css ./src/guarantee.css 
+	cleancss -o ./output/guarantee.css ./src/guarantee.css
+	cleancss -o ./output/pstip.css ./src/pstip.css 
