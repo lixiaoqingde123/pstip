@@ -39,8 +39,6 @@
 <h1>[Page Body]</h1>
     <div id="ec_im_container">
     <span class="icons EC_PP">
-        <a class="icon icon-coupon ec-ui-tip" href="#" data-tip-limite="true" data-tooltips="bl" data-coupon="{text: '电话',title: '电话电话电话',a:{billing: true, fm: 'im', rsvMt: '', p1: '2', url: ''}}"></a>
-        <i class="icon icon-tel ec-ui-tip" data-tip-limite="true" data-tooltips="bc" data-telephone="{text: '电话',title: '电话电话电话'}"></i>
         <i class="ec-ui-tip" style="display: inline-block; width: 16px; height: 16px; line-height: 16px; vertical-align: text-top; background-image: url(http://a.baidu.com/xianzhi/wholeIconNew.gif);background-position:0px -64px;background-repeat: no-repeat; margin: 0 5px 0 0;" data-tip-limite="true" data-tooltips="bc" data-renzheng="{a: {f: 'a', billing: true }, text: 'ddd', title: '携程旅行网携程旅行网携程旅行网携程旅行网携程旅行网：', favorite: {billing: true, fm: 'im', rsvMt: '', p1: '2', url: ''}, appraise: {fm: 'im', rsvMt: '', p1: '2', url: ''}, report: {fm: 'im', rsvMt: '', p1: '2', url: ''}, identity: {a: {billing: true, text: '百度身份认证', fm: 'im', rsvMt: '1017', p1: '2', url: ''}, text: '', credit: '3'} }"></i> </span>
 </div>
 
@@ -59,8 +57,8 @@ require.config({
     packages: [ ]
 });
 //引入大搜索的tip
-require( ['ecom/common/api/pstip0725/pstip'], function(tipapi) {
-// require( ['pstip'], function(tipapi) {
+// require( ['ecom/common/api/pstip0725/pstip'], function(tipapi) {
+require( ['pstip'], function(tipapi) {
     var opts = {
         triggers:"ec-ui-tip",
         layerOffsetLeft:5,

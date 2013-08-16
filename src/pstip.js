@@ -44,12 +44,6 @@ define( function(require){
             +     '#{and}'
             +     '#{appraise}'
             + '</div>',
-        
-        // 电话模板
-        telephone: '<div class="ecl-ui-tip-ps-telephone">#{text}</div>',
-
-        // 优惠券模板
-        coupon: '<div class="ecl-ui-tip-ps-coupon">#{text}#{a}</div>',
 
         // 浮层列表模板
         list : '<ul>#{medical}#{airline}#{dfa}#{identity}#{personal}</ul>',
@@ -229,8 +223,6 @@ define( function(require){
      * 
      * @param {[type]} logType 日志类型：
      * v身份： identity
-     * 电话： telephone
-     * 优惠券： coupon
      */
     function sendLog(logType) {
 
@@ -306,16 +298,6 @@ define( function(require){
             sendLog('identity');
         }
 
-        // 优惠券浮层，发送日志
-        if( baidu.dom.hasClass(arrow.target, 'icon-coupon')) {
-            sendLog('coupon');
-        }
-
-        // 电话浮层，发送日志
-        if( baidu.dom.hasClass(arrow.target, 'icon-tel')) {
-            sendLog('telephone');
-        }
-
     }
 
     // 
@@ -345,28 +327,11 @@ define( function(require){
 
         // 从dom属性中获取v身份浮层数据
         var authJson = getDataFromAttr(arrowDom, 'data-renzheng');
-        // 从dom属性中电话浮层数据
-        var teleJson = getDataFromAttr(arrowDom, 'data-telephone');
-        // 从dom属性中优惠券浮层数据
-        var couponJson = getDataFromAttr(arrowDom, 'data-coupon');
 
         // 构造v身份浮层html
         if(authJson) {
             title = authTitleHtml(authJson);
             content = authBodyHtml(authJson);
-        }
-
-        // 构造电话浮层html
-        if(teleJson) {
-            title = telephoneTitleHtml(teleJson);
-            content = telephoneBodyHtml(teleJson);
-        }
-
-        // 构造优惠券浮层html
-        if(couponJson) {
-            title = couponTitleHtml(couponJson);
-            content = couponBodyHtml(couponJson);
-
         }
         
         layer.title = title;
@@ -522,56 +487,6 @@ define( function(require){
         var contentHTML = '' + list + topBottom;
 
         return contentHTML;
-    }
-
-    /**
-     * 电话标题html
-     * 
-     * @param {[type]} json 电话数据
-     * @return {[type]} 返回拼装好的标题html
-     */
-    function telephoneTitleHtml(json) {
-        var title = format('title', {title: json.title});
-
-        return title;
-    }
-
-    /**
-     * 电话正文 html
-     * 
-     * @param {[type]} json 电话数据
-     * @return {[type]} 返回拼装好的标题html
-     */
-    function telephoneBodyHtml(json) {
-        
-        var content = format('telephone', {text: json.text});
-
-        return content;
-    }
-
-    /**
-     * 优惠券标题html
-     * 
-     * @param {[type]} json 优惠券数据
-     * @return {[type]} 返回拼装好的标题html
-     */
-    function couponTitleHtml(json) {
-        var title = format('title', {title: json.title});
-
-        return title;
-    }
-
-    /**
-     * 优惠券正文 html
-     * 
-     * @param {[type]} json 优惠券数据
-     * @return {[type]} 返回拼装好的标题html
-     */
-    function couponBodyHtml(json) {
-        var aHtml = dataFormatForA(json.a, youhuiquanlianjie);
-        var content = format('coupon', {a: aHtml, text: json.text});
-
-        return content;
     }
 
     /**
