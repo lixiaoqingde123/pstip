@@ -219,7 +219,7 @@ margin-right:5px;
 
 .ecl-ui-tip-ps ul.icon-dropdown-wraper li.icon-dropdown-addhomepage{
   margin-top: 0px;
-  background-image: url(./imgs/dropdown-bg.png);
+  background-image: url(dropdownmenu.png);
   background-position: 2px -194px;
 }
 
@@ -232,7 +232,7 @@ margin-right:5px;
 
 .ecl-ui-tip-ps li.icon-dropdown-shield{
   margin-top: 0px;
-  background-image: url(./imgs/dropdown-bg.png);
+  background-image: url(dropdownmenu.png);
   background-position: 2px -220px;
 }
 
@@ -244,7 +244,7 @@ margin-right:5px;
 
 .ecl-ui-tip-ps li.icon-dropdown-share{
   margin-top: 0px;
-  background-image: url(./imgs/dropdown-bg.png);
+  background-image: url(dropdownmenu.png);
   background-position: 2px -246px;
 }
 
@@ -256,7 +256,7 @@ margin-right:5px;
 
 .ecl-ui-tip-ps li.icon-dropdown-favorite{
   margin-top: 0px;
-  background-image: url(./imgs/dropdown-bg.png);
+  background-image: url(dropdownmenu.png);
   background-position: 2px -272px;
 }
 
@@ -268,7 +268,7 @@ margin-right:5px;
 
 .ecl-ui-tip-ps li.icon-dropdown-appraise{
   margin-top: 0px;
-  background-image: url(./imgs/dropdown-bg.png);
+  background-image: url(dropdownmenu.png);
   background-position: 2px -298px;
 }
 
@@ -280,7 +280,7 @@ margin-right:5px;
 
 .ecl-ui-tip-ps li.icon-dropdown-report{
   margin-top: 0px;
-  background-image: url(./imgs/dropdown-bg.png);
+  background-image: url(dropdownmenu.png);
   background-position: 2px -324px;
 }
 
