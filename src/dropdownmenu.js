@@ -311,8 +311,8 @@ define( function(require){
                 if(!tipControl) {
 
                 // 引入tip所需的css
-                // var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
-                var url = 'src/dropdownmenu.css';
+                var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
+                // var url = 'src/dropdownmenu.css';
 
                 loadCss(url);
 
