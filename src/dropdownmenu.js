@@ -10,12 +10,12 @@ define( function(require){
     var TPL = {
         dropDownList : ''
             + '<ul class="icon-dropdown-wraper">'
-            +     '<li class="icon-dropdown-addhomepage" onmouseover="this.className=\'icon-dropdown-addhomepage icon-dropdown-addhomepage-selected\'" onmouseout="this.className=\'icon-dropdown-addhomepage\' ">#{addhomepage}</li>'
-            +     '<li class="icon-dropdown-shield" onmouseover="this.className=\'icon-dropdown-shield icon-dropdown-shield-selected\'" onmouseout="this.className=\'icon-dropdown-shield\' ">#{shield}</li>'
-            +     '<li class="icon-dropdown-share" onmouseover="this.className=\'icon-dropdown-share icon-dropdown-share-selected\'" onmouseout="this.className=\'icon-dropdown-share\' ">#{share}</li>'
-            +     '<li class="icon-dropdown-favorite" onmouseover="this.className=\'icon-dropdown-favorite icon-dropdown-favorite-selected\'" onmouseout="this.className=\'icon-dropdown-favorite\' ">#{favorite}</li>'
-            +     '<li class="icon-dropdown-appraise" onmouseover="this.className=\'icon-dropdown-appraise icon-dropdown-appraise-selected\'" onmouseout="this.className=\'icon-dropdown-appraise\' ">#{appraise}</li>'
-            +     '<li class="icon-dropdown-report" onmouseover="this.className=\'icon-dropdown-report icon-dropdown-report-selected\'" onmouseout="this.className=\'icon-dropdown-report\' ">#{report}</li>'
+            +     '<li class="icon-dropdown-addhomepage"><a href="http://www.baidu.com" target="_blank">#{addhomepage}</a></li>'
+            +     '<li class="icon-dropdown-shield"><a href="http://www.baidu.com" target="_blank">#{shield}</a></li>'
+            +     '<li class="icon-dropdown-share"><a href="http://www.baidu.com" target="_blank">#{share}</a></li>'
+            +     '<li class="icon-dropdown-favorite"><a href="http://www.baidu.com" target="_blank">#{favorite}</a></li>'
+            +     '<li class="icon-dropdown-appraise"><a href="http://www.baidu.com" target="_blank">#{appraise}</a></li>'
+            +     '<li class="icon-dropdown-report"><a href="http://www.baidu.com" target="_blank">#{report}</a></li>'
             + '</ul>'
     };
 
@@ -311,8 +311,8 @@ define( function(require){
                 if(!tipControl) {
 
                 // 引入tip所需的css
-                var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
-                // var url = 'src/dropdownmenu.css';
+                // var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
+                var url = 'src/dropdownmenu.css';
 
                 loadCss(url);
 

@@ -50,10 +50,11 @@
             href="#" data-tooltips="bl"
             data-dropdown="{ favorite: {text: '收藏', url: 'http://www.baidu.com'}, appraise: {text: '评价', url: 'http://www.baidu.com'}, report: {text: '举报', url: 'http://www.baidu.com'}, share: {text: '分享', url: 'http://www.baidu.com'}, shield: {text: '屏蔽该结果' }, addhomepage: {text: '添加到首页' } }">
         </a>
+    </span>
         <!-- <i class="icon icon-personal ec-ui-tip efc-cert _ecui_tips" data-renzheng='{"personal":{"a":{"fm":"im","rsvMt":"1017","p1":"1","url":"http://www.baidu.com/&amp;dataTime=54&amp;"},"img":"http://defensor-off.baidu.com:8080//vcard//img//plogo.gif","text":"","credit":"3"},"medical":{"a":{"fm":"","rsvMt":"","p1":"","url":""},"text":"综合、三级甲等"},"airline":{"a":{"fm":"im","rsvMt":"1008","p1":"1","text":"中航协认证","url":"http://www.baidu.com/search/verify_help.html"},"img":"http://bs.baidu.com/chuangxin/n2_jp_bg.gif","text":"机票代理资格"}}' data-tip-limite="true" data-tooltips="bc"></i> -->
 </div>
-<!-- <div class="ecl-ui-tip ecl-ui-tip-ps" style="left: 482px; top: 102px;"><div class="ecl-ui-tip-arrow ecl-ui-tip-arrow-bottom" style="display: none; left: 5px;"><em></em><ins></ins></div><div class="ecl-ui-tip-title" style="display: none;"></div><div class="ecl-ui-tip-body"><ul class="icon-dropdown-wraper"><li class="icon-dropdown-addhomepage icon-dropdownitem-selected" onmouseover="this.className='icon-dropdown-addhomepage icon-dropdownitem-selected'" onmouseout="this.className='icon-dropdown-addhomepage' ">添加到首页</li><li class="icon-dropdown-shield" onmouseover="this.className='icon-dropdown-shield icon-dropdownitem-selected'" onmouseout="this.className='icon-dropdown-shield' ">屏蔽该结果</li><li class="icon-dropdown-share" onmouseover="this.className='icon-dropdown-share icon-dropdownitem-selected'" onmouseout="this.className='icon-dropdown-share' ">分享</li><li class="icon-dropdown-favorite" onmouseover="this.className='icon-dropdown-favorite icon-dropdownitem-selected'" onmouseout="this.className='icon-dropdown-favorite' ">收藏</li><li class="icon-dropdown-appraise" onmouseover="this.className='icon-dropdown-appraise icon-dropdownitem-selected'" onmouseout="this.className='icon-dropdown-appraise' ">评价</li><li class="icon-dropdown-report" onmouseover="this.className='icon-dropdown-report icon-dropdownitem-selected'" onmouseout="this.className='icon-dropdown-report' ">举报</li></ul></div></div> -->
 
+<!-- <div class="ecl-ui-tip ecl-ui-tip-ps" style="left: 395px; top: 102px;"><div class="ecl-ui-tip-arrow ecl-ui-tip-arrow-bottom" style="display: none; left: 5px;"><em></em><ins></ins></div><div class="ecl-ui-tip-title" style="display: none;"></div><div class="ecl-ui-tip-body"><ul class="icon-dropdown-wraper"><li class="icon-dropdown-addhomepage"><a href="http://www.baidu.com" target="_blank">添加到首页</a></li><li class="icon-dropdown-shield"><a href="http://www.baidu.com" target="_blank">屏蔽该结果</a></li><li class="icon-dropdown-share"><a href="http://www.baidu.com" target="_blank">分享</a></li><li class="icon-dropdown-favorite"><a href="http://www.baidu.com" target="_blank">收藏</a></li><li class="icon-dropdown-appraise"><a href="http://www.baidu.com" target="_blank">评价</a></li><li class="icon-dropdown-report"><a href="http://www.baidu.com" target="_blank">举报</a></li></ul></div></div> -->
 
 
 
@@ -72,8 +73,8 @@ require.config({
     packages: [ ]
 });
 //引入大搜索的tip
-require( ['ecom/common/api/dropdownmenu0821/dropdownmenu'], function(tipapi) {
-// require( ['dropdownmenu'], function(tipapi) {
+// require( ['ecom/common/api/dropdownmenu0821/dropdownmenu'], function(tipapi) {
+require( ['dropdownmenu'], function(tipapi) {
     var opts = {
         triggers:"ec-ui-dropdown",
         layerOffsetLeft:5,
