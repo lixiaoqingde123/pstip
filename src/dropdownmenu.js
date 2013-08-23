@@ -10,10 +10,10 @@ define( function(require){
     var TPL = {
         dropDownList : ''
             + '<ul class="icon-dropdown-wraper">'
-            +     '<li class="icon-dropdown-addhomepage"><a href="#{addhomepageUrl}" target="_blank">#{addhomepage}</a></li>'
-            +     '<li class="icon-dropdown-shield"><a href="#{shieldUrl}" target="_blank">#{shield}</a></li>'
-            +     '<li class="icon-dropdown-share"><a href="#{shareUrl}" target="_blank">#{share}</a></li>'
+            // +     '<li class="icon-dropdown-addhomepage"><a href="#{addhomepageUrl}" target="_blank">#{addhomepage}</a></li>'
+            // +     '<li class="icon-dropdown-shield"><a href="#{shieldUrl}" target="_blank">#{shield}</a></li>'
             +     '<li class="icon-dropdown-favorite"><a href="#{favoriteUrl}" target="_blank">#{favorite}</a></li>'
+            +     '<li class="icon-dropdown-share"><a href="#{shareUrl}" target="_blank">#{share}</a></li>'
             +     '<li class="icon-dropdown-appraise"><a href="#{appraiseUrl}" target="_blank">#{appraise}</a></li>'
             +     '<li class="icon-dropdown-report"><a href="#{reportUrl}" target="_blank">#{report}</a></li>'
             + '</ul>'
@@ -248,10 +248,10 @@ define( function(require){
         var html = format(
             'dropDownList',
             {
-                addhomepage    : json.addhomepage.text,
-                addhomepageUrl : json.addhomepage.url,
-                shield         : json.shield.text,
-                shieldUrl      : json.shield.url,
+                // addhomepage    : json.addhomepage.text,
+                // addhomepageUrl : json.addhomepage.url,
+                // shield         : json.shield.text,
+                // shieldUrl      : json.shield.url,
                 share          : json.share.text,
                 shareUrl       : json.share.url,
                 favorite       : json.favorite.text,
@@ -318,7 +318,7 @@ define( function(require){
 
                 // 引入tip所需的css
                 var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
-                // var url = 'http://fedev.baidu.com/~chengong03/lib/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
+                // var url = 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
                 // var url = 'src/dropdownmenu.css';
 
                 loadCss(url);
