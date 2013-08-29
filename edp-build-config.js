@@ -11,7 +11,7 @@ exports.getProcessors = function () {
     function JsUnicodeReplacer( options ) {
         AbstractProcessor.call( this, options );
     }
-    
+
     JsUnicodeReplacer.prototype = new global.AbstractProcessor();
     JsUnicodeReplacer.prototype.name = "JsUnicodeReplacer";
     JsUnicodeReplacer.prototype.process = function ( file, processContext, callback ) {
@@ -23,18 +23,18 @@ exports.getProcessors = function () {
 
         callback();
     };
-    
-    return [ 
+
+    return [
         new LessCompiler( {
             entryExtnames: pageEntries
-        } ), 
-        //new CssCompressor(),
-        new CssImporter(),
+        } ),
+        new CssCompressor(),
+        // new CssImporter(),
         new ModuleCompiler( {
             configFile: 'module.conf',
             entryExtnames: moduleEntries
-        } ), 
-        new JsCompressor(), 
+        } ),
+        new JsCompressor(),
         new PathMapper( {
             replacements: [
                 { type: 'html', tag: 'link', attribute: 'href', extnames: pageEntries },
@@ -79,7 +79,9 @@ exports.exclude = [
     'build.sh',
     'src/control.js',
     'src/tip.js',
-    'src/tangram-1.3.9.source.js'
+    'src/tangram-1.3.9.source.js',
+    'src/pstiplib.js',
+    'start.bat'
 ];
 
 exports.injectProcessor = function ( processors ) {

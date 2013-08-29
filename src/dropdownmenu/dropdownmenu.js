@@ -318,7 +318,11 @@ define( function(require){
 
                 // 引入tip所需的css
                 var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
+
+                // 开发环境静态文件地址
                 // var url = 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
+
+                // 本地调试
                 // var url = 'src/dropdownmenu.css';
 
                 loadCss(url);
@@ -327,7 +331,10 @@ define( function(require){
                 baidu.object.extend(conf, opts || {});
 
                 // 引入tip组件
-                var Tip = require('./tip');
+                // var Tip = require('./tip'); // 打包的时候 control、tip和dropdownmenu都打到一起
+
+                // 打包的时候，dropdownmenu单独打包，pstiplib引线上的资源
+                var Tip = require('ecom/common/api/pstiplib0826/pstiplib');
                     tipControl = new Tip({
                         // 浮层的显示模式，鼠标滑过显示
                         mode: 'over',

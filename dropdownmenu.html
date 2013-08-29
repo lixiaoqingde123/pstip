@@ -63,13 +63,16 @@
 <script type="text/javascript">
 require.config({
     baseUrl: 'src',
-    paths: { },
+    paths: {
+        ecom: 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom'
+        // pstiplib:'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/pstiplib0826/pstiplib'
+    },
     packages: [ ]
 });
 
 //引入大搜索的tip
 require( ['ecom/common/api/dropdownmenu0821/dropdownmenu'], function(tipapi) {
-// require( ['dropdownmenu'], function(tipapi) {
+// require( ['dropdownmenu/dropdownmenu'], function(tipapi) {
     var opts = {
         triggers:"ec-ui-dropdown",
         layerOffsetLeft:5,
