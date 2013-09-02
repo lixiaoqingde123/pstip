@@ -418,37 +418,37 @@ define( function(require){
     // 仅执行一次
     var tipControl;
 
-
     function init(opts) {
-
 
             baidu.dom.ready(function() {
 
                 // 增加判断，避免同一页面引入多个浮层
                 if(!tipControl) {
 
-                // 引入tip所需的css
-                // var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
-
-                // 开发环境静态文件地址
-                var url = 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
-
-                // 本地调试
+                // 本地调试，引入css文件
                 // var url = 'src/commitment/commitment.css';
+
+                // 测试机调试，引入css文件
+                // var url = 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
+
+                // 线上，引入css文件
+                var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/commitment0902/commitment.css';
+
+
 
                 loadCss(url);
 
                 // 合并用户配置与默认配置
                 baidu.object.extend(conf, opts || {});
 
-                // 引入tip组件
-                // var Tip = require('./tip'); // 打包的时候 control、tip和dropdownmenu都打到一起
+                // 本地调试，引入pstiplib组件
+                // var Tip = require('../pstiplib/pstiplib');
 
-                // 引入pstiplib组件
-                var Tip = require('../pstiplib/pstiplib');
+                // 线上，压成一份，引入tip组件，还需修改module.conf
+                var Tip = require('./tip'); // 打包的时候 control、tip和dropdownmenu都打到一起
 
-                // 打包的时候，dropdownmenu单独打包，pstiplib引线上的资源
-                // var Tip = require('ecom/common/api/pstiplib0826/pstiplib');
+                // 线上，抽出公共部分，引入pstiplib组件
+                // var Tip = require('ecom/common/api/pstiplib0902/pstiplib');
 
                     tipControl = new Tip({
                         // 浮层的显示模式，鼠标滑过显示
