@@ -52,15 +52,15 @@
 require.config({
     baseUrl: 'src',
     paths: {
-        ecom: 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom'
+        // ecom: 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom'
         // pstiplib:'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/pstiplib0826/pstiplib'
     },
     packages: [ ]
 });
 
 //引入大搜索的tip
-require( ['ecom/common/api/commitment0902/commitment'], function(tipapi) {
-// require( ['commitment/commitment'], function(tipapi) {
+// require( ['ecom/common/api/commitment0902/commitment'], function(tipapi) {
+require( ['commitment/commitment'], function(tipapi) {
     var opts = {
         triggers:"ec-ui-commitment",
         layerOffsetLeft:5,

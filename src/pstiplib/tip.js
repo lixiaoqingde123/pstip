@@ -476,7 +476,9 @@ define(function (require) {
             this.clear();
 
             var arrow = this.elements.arrow;
-            DOM.setStyle(main, 'left', - main.offsetWidth - arrow.offsetWidth);
+            //将tip的负边距改的远一点，解决浏览器兼容问题 by chengong03
+            DOM.setStyle(main, 'left', - main.offsetWidth - arrow.offsetWidth - 2000);
+            // DOM.setStyle(main, 'left', - main.offsetWidth - arrow.offsetWidth);
 
             this.current = null;
             T.un(window, 'resize', this.onResize);

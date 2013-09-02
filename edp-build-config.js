@@ -77,10 +77,24 @@ exports.exclude = [
      /* 用户自定义忽略文件 */
     'README.md',
     'build.sh',
-    'src/control.js',
-    'src/tip.js',
+
+    'pstip.html',
+    'commitment.html',
+    'dropdownmenu.html',
+
+    'src/pstip/control.js',
+    'src/pstip/tip.js',
+
+    'src/commitment/control.js',
+    'src/commitment/tip.js',
+
+    'src/dropdownmenu/control.js',
+    'src/dropdownmenu/tip.js',
+
+    'src/pstiplib/control.js',
+    'src/pstiplib/tip.js',
+
     'src/tangram-1.3.9.source.js',
-    'src/pstiplib.js',
     'start.bat'
 ];
 

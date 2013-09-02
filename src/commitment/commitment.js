@@ -444,8 +444,12 @@ define( function(require){
                 // 引入tip组件
                 // var Tip = require('./tip'); // 打包的时候 control、tip和dropdownmenu都打到一起
 
+                // 引入pstiplib组件
+                var Tip = require('../pstiplib/pstiplib');
+
                 // 打包的时候，dropdownmenu单独打包，pstiplib引线上的资源
-                var Tip = require('ecom/common/api/pstiplib0826/pstiplib');
+                // var Tip = require('ecom/common/api/pstiplib0826/pstiplib');
+
                     tipControl = new Tip({
                         // 浮层的显示模式，鼠标滑过显示
                         mode: 'over',
