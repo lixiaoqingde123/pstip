@@ -543,7 +543,10 @@ define( function(require){
                 baidu.object.extend(conf, opts || {});
 
                 // 引入tip组件
-                var Tip = require('./tip');
+                // var Tip = require('./tip');
+
+                // 线上，抽出公共部分，引入pstiplib组件
+                var Tip = require('ecom/common/api/pstiplib0902/pstiplib');
                     tipControl = new Tip({
                         // 浮层的显示模式，鼠标滑过显示
                         mode: 'over',

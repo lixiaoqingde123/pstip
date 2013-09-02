@@ -445,11 +445,11 @@ define( function(require){
                 // var Tip = require('../pstiplib/pstiplib');
 
                 // 线上，压成一份，引入tip组件，还需修改module.conf
-                var Tip = require('./tip'); // 打包的时候 control、tip和dropdownmenu都打到一起
+                // var Tip = require('./tip'); // 打包的时候 control、tip和dropdownmenu都打到一起
 
                 // 线上，抽出公共部分，引入pstiplib组件
-                // var Tip = require('ecom/common/api/pstiplib0902/pstiplib');
-
+                var Tip = require('ecom/common/api/pstiplib0902/pstiplib');
+                
                     tipControl = new Tip({
                         // 浮层的显示模式，鼠标滑过显示
                         mode: 'over',
