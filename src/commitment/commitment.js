@@ -1,105 +1,66 @@
 /**
- * @file v身份浮层
- * @author duanlixin(duanlixin@baidu.com)
+ * @file v卡承诺浮层
+ * @author Wanglei(wanglei23@baidu.com)
  */
 
 define( function(require){
 
-    /**
-     * 由于不同环境中编码不同，因此浮层中的中文统一使用unicode
-     * 浮层用到的中文转换后的unicode如下：
-     */
-    var yijingtonguo = '\u5df2\u7ecf\u901a\u8fc7';
-    var baiduxinyuxingji = '\u767e\u5ea6\u4fe1\u8a89\u661f\u7ea7';
-    var juyou = '\u5177\u6709';
-    var baidushenfenrenzheng = '\u767e\u5ea6\u8eab\u4efd\u8ba4\u8bc1';
-    var shoucang = '\u6536\u85cf';
-    var pinglun = '\u8bc4\u8bba';
-    var jubao = '\u4e3e\u62a5';
-    var youhuiquanlianjie = '\u4f18\u60e0\u5238\u94fe\u63a5';
-
-
 
     // 模板TPL
     var TPL = {
-        // a标签 链接模板
-        a: ''
-            + '<span#{billing}>'
-            + '<a target="_blank"  href="#{url}" onmousedown="return c({'
-            +     '\'title\':this.innerHTML,'
-            +     '\'url\':this.href'
-            +     ',#{options}'
-            +     '});">'
-            +     '#{text}'
-            + '</a>'
-            + '</span>',
+        commitmentList : ''
+            + '<ul class="icon-commitment-wraper">'
+            +     '#{item1}'
+            +     '#{item2}'
+            +     '#{item3}'
+            +     '#{item4}'
+            +     '#{item5}'
+            + '</ul>',
 
-        // 标题模板
-        title : '<strong class="ecl-ui-tip-ps-title">#{title}</strong>',
-
-        // 右侧链接
-        rightTop: ''
-            +'<div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-top">'
-            +     '#{favorite}'
-            +     '#{and}'
-            +     '#{appraise}'
-            + '</div>',
-
-        // 浮层列表模板
-        list : '<ul>#{medical}#{airline}#{dfa}#{identity}#{personal}</ul>',
-
-        // 医疗模板
-        medical : '<li class="icon-medical"><span>#{text}</span></li>',
-
-        // 加V模板
-        identity : ''
-            + '<li class="icon-identity">'
-            + yijingtonguo
-            +     '#{text}#{a}'
-            +'</li>'
-            + '#{creditblock}',
-
-        // 个人商家模板
-        personal : ''
-            + '<li class="icon-empty">'
-            +    '<img '// alt="个人商家"
-            +    'height=16 width=16 '//title="个人商家"
-            +    'src="#{img}">'
-            +    yijingtonguo
-            +    '#{text}#{a}'
-            +'</li>#{creditblock}',
-
-        // 百度信誉星级模板
-        creditblock : ''
-            + '<li class="icon-empty">'
-            +    '<div class="ecl-ui-tip-ps-level '
-            +    'ecl-ui-tip-ps-level#{credit}">'
-            +    baiduxinyuxingji
-            +    '</div>'
-            + '</li>',
-
-        // 航协模板
-        airline : ''
-            + '<li class="icon-empty">'
-            + '<img height=16 ' //alt="行业认证" title="行业认证"
-            + 'width=16 src="#{img}">'
-            + juyou
-            + '#{a}的#{text}</li>',
-
-        // 药监局模板
-        dfa : ''
-            + '<li class="icon-empty">'
-            +    '<img '//  alt="商家权益保障"
-            +    'height=16 width=16 '// title="商家权益保障"
-            +    'src="#{img}">'
-            +    '#{text}'
+        item1 : ''
+            + '<li class="icon-item1">'
+            +     '<span>'
+            +         '<a href=#{url} target="_blank">'
+            +             '#{text}'
+            +         '</a>'
+            +     '</span>'
             +'</li>',
 
-        // 举报模板
-        rightBottom : ''
-            + '<div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-bottom">'
-            +    '#{report}'
-            + '</div>'
+        item2 : ''
+            + '<li class="icon-item2">'
+            +     '<span>'
+            +         '<a href=#{url} target="_blank">'
+            +             '#{text}'
+            +         '</a>'
+            +     '</span>'
+            +'</li>',
+
+        item3 : ''
+            + '<li class="icon-item3">'
+            +     '<span>'
+            +         '<a href=#{url} target="_blank">'
+            +             '#{text}'
+            +         '</a>'
+            +     '</span>'
+            +'</li>',
+
+        item4 : ''
+            + '<li class="icon-item4">'
+            +     '<span>'
+            +         '<a href=#{url} target="_blank">'
+            +             '#{text}'
+            +         '</a>'
+            +     '</span>'
+            +'</li>',
+
+        item5 : ''
+            + '<li class="icon-item5">'
+            +     '<span>'
+            +         '<a href=#{url} target="_blank">'
+            +             '#{text}'
+            +         '</a>'
+            +     '</span>'
+            +'</li>'
     };
 
     // 浮层默认配置数据
@@ -116,22 +77,6 @@ define( function(require){
         hideDelay: 500
     };
 
-    // 汉字转unicode
-    function unicode(value) {
-
-        var preStr = '\\u';
-        var value = baidu.string.trim(value);
-        var cnReg = /[\u0391-\uFFE5]/gm;
-
-        if(cnReg.test(value)) {
-
-            var ret = value.replace(cnReg, function(str) {
-
-                return preStr + str.charCodeAt(0).toString(16);
-
-            });
-        }
-    }
 
     var sendLogUrl = '';
 
@@ -223,6 +168,8 @@ define( function(require){
      *
      * @param {[type]} logType 日志类型：
      * v身份： identity
+     * 电话： telephone
+     * 优惠券： coupon
      */
     function sendLog(logType) {
 
@@ -292,15 +239,12 @@ define( function(require){
             resetPositionBr(arrow, layer);
         }
 
-        // v身份浮层，发送日志
-        if( baidu.dom.hasClass(arrow.target, 'icon-certify') ||
-            baidu.dom.hasClass(arrow.target, 'icon-personal')) {
-            sendLog('identity');
+        // 下拉菜单浮层，发送日志
+        if( baidu.dom.hasClass(arrow.target, 'icon-commitment')) {
+            sendLog('commitment');
         }
-
     }
 
-    //
     /**
      * 显示浮层前，拼装html
      *
@@ -325,13 +269,12 @@ define( function(require){
                 ? 'addClass' : 'removeClass'
         ](layer.main, 'ecl-ui-tip-ps-limite-width');
 
-        // 从dom属性中获取v身份浮层数据
-        var authJson = getDataFromAttr(arrowDom, 'data-renzheng');
+        // 从dom属性中获取承诺浮层的数据
+        var commitmentJson = getDataFromAttr(arrowDom, 'data-commitment');
 
-        // 构造v身份浮层html
-        if(authJson) {
-            title = authTitleHtml(authJson);
-            content = authBodyHtml(authJson);
+        // 构造下拉承诺浮层html by wanglei23
+        if(commitmentJson) {
+            content = commitmentBodyHtml(commitmentJson);
         }
 
         layer.title = title;
@@ -339,52 +282,97 @@ define( function(require){
     }
 
     /**
-     * 格式化链接数据
-     *
-     * @param {[type]} obj 链接数据
-     * @param {[type]} text 链接文本
-     * @return {[type]} 返回拼装好的html
+     * 承诺浮层html
+     * @param  {Object} json v身份数据
+     * @return {string}      返回拼装好的标题html
      */
-    function dataFormatForA(obj, text) {
+    function commitmentBodyHtml(json) {
+        var item1Html =
+            json.item1
+            ?
+            format('item1', {
+                text: json.item1.text,
+                url: json.item1.url
+            })
+            :
+            '';
 
-        // 格式后数据
-        var formatObj = {};
-        // 返回的html
-        var html = '';
+        var item2Html =
+            json.item2
+            ?
+            format('item2', {
+                text: json.item2.text,
+                url: json.item2.url
+            })
+            :
+            '';
 
-        if(obj) {
+        var item3Html =
+            json.item3
+            ?
+            format('item3', {
+                text: json.item3.text,
+                url: json.item3.url
+            })
+            :
+            '';
 
-            // 链接中自定义的属性数据
-            var optionArray = [];
-            for(var key in obj) {
-                // 过滤billing、url、text为key的数据
-                if('billing' === key || 'url' === key || 'text' === key) {
-                    continue;
-                }
-                optionArray.push(
-                    ''
-                    + '\''
-                    + key
-                    + '\''
-                    + ':'
-                    + '\''
-                    + obj[key]
-                    + '\''
-                );
+        var item4Html =
+            json.item4
+            ?
+            format('item4', {
+                text: json.item4.text,
+                url: json.item4.url
+            })
+            :
+            '';
 
+        var item5Html =
+            json.item5
+            ?
+            format('item5', {
+                text: json.item5.text,
+                url: json.item5.url
+            })
+            :
+            '';
+        var html = format(
+            'commitmentList',
+            {
+                item1 : item1Html,
+                item2 : item2Html,
+                item3 : item3Html,
+                item4 : item4Html,
+                item5 : item5Html
             }
-            formatObj = {
-                // 若需要计费，则给外层span增加class为EC_PP
-                billing: obj.billing && ' class="EC_PP"',
-                // 链接的url
-                url: obj.url,
-                // 链接的文本
-                text: obj.text || text,
-                // 链接中自定义的属性数据
-                options: optionArray.join(',')
-            };
-            html = format('a', formatObj);
-        }
+        );
+        return html;
+    }
+
+    /**
+     * 下拉菜单html by wanglei23
+     *
+     * @param {[type]} json v身份数据
+     * @return {[type]} 返回拼装好的标题html
+     */
+    function dropDownBodyHtml(json) {
+        var html = format(
+            'dropDownList',
+            {
+                // addhomepage    : json.addhomepage.text,
+                // addhomepageUrl : json.addhomepage.url,
+                // shield         : json.shield.text,
+                // shieldUrl      : json.shield.url,
+                share          : json.share.text,
+                shareUrl       : json.share.url,
+                favorite       : json.favorite.text,
+                favoriteUrl    : json.favorite.url,
+                appraise       : json.appraise.text,
+                appraiseUrl    : json.appraise.url,
+                report         : json.report.text,
+                reportUrl      : json.report.url
+            }
+        );
         return html;
     }
 
@@ -392,101 +380,6 @@ define( function(require){
     function format(type, obj) {
         obj = obj || {};
         return baidu.format(TPL[type], obj);
-    }
-
-    /**
-     * 格式化新样式数据
-     *
-     * @param {[type]} type 新样式类型
-     * @param {[type]} obj 新样式数据
-     * @return {[type]} 返回拼装好的html
-     */
-    function dataForamtForRow(type, obj) {
-        var html = '';
-        if(obj) {
-            // 格式化链接数据
-            var aHtml = dataFormatForA(obj.a, baidushenfenrenzheng);
-            // 格式化信誉等级数据
-            var creditblock = format('creditblock', {credit: obj.credit});
-            html = format(type, {
-                text: obj.text,
-                a: aHtml,
-                creditblock: creditblock,
-                img: obj.img
-            });
-        }
-        // 返回拼装好的html
-        return html;
-    }
-
-    /**
-     * v身份标题html
-     *
-     * @param {[type]} json v身份数据
-     * @return {[type]} 返回拼装好的标题html
-     */
-    function authTitleHtml(json) {
-        var title = format('title', {title: json.title});
-
-        // 收藏html
-        var favorite = dataFormatForA(json.favorite, shoucang);
-        // 评价html
-        var appraise = dataFormatForA(json.appraise, pinglun);
-
-        // 收藏和评价的外围容器
-        var topRight = format(
-            'rightTop',
-            {
-                favorite: favorite,
-                appraise: appraise,
-                and: (favorite && appraise) && '&nbsp|&nbsp'
-            }
-        );
-
-        var titleHTML = '' + title + topRight;
-        return titleHTML;
-
-    }
-
-    /**
-     * v身份新样式html
-     *
-     * @param {[type]} json v身份数据
-     * @return {[type]} 返回拼装好的标题html
-     */
-    function authBodyHtml(json) {
-
-        // 医疗 html
-        var medical = dataForamtForRow('medical' ,json.medical);
-        // 企业加v html
-        var identity = dataForamtForRow('identity',json.identity);
-        // 个人加v html
-        var personal = dataForamtForRow('personal',json.personal);
-        // 航协 html
-        var airline = dataForamtForRow('airline', json.airline);
-        // 药监局 html
-        var dfa = dataForamtForRow('dfa',json.dfa);
-
-        // 所有新样式，有则显示，没有不显示
-        var list = format(
-            'list',
-            {
-                medical: medical,
-                identity:identity,
-                airline: airline,
-                dfa: dfa,
-                personal: personal
-            });
-
-        // 举报 html
-        var report = dataFormatForA(json.report, jubao);
-
-        // 举报的外围容器
-        var topBottom = format('rightBottom', {report: report});
-
-        var contentHTML = '' + list + topBottom;
-
-        return contentHTML;
     }
 
     /**
@@ -535,7 +428,13 @@ define( function(require){
                 if(!tipControl) {
 
                 // 引入tip所需的css
-                var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/tip0725/tipapi.css';
+                // var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/dropdownmenu0821/dropdownmenu.css';
+
+                // 开发环境静态文件地址
+                var url = 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
+
+                // 本地调试
+                // var url = 'src/commitment/commitment.css';
 
                 loadCss(url);
 
@@ -543,7 +442,10 @@ define( function(require){
                 baidu.object.extend(conf, opts || {});
 
                 // 引入tip组件
-                var Tip = require('./tip');
+                // var Tip = require('./tip'); // 打包的时候 control、tip和dropdownmenu都打到一起
+
+                // 打包的时候，dropdownmenu单独打包，pstiplib引线上的资源
+                var Tip = require('ecom/common/api/pstiplib0826/pstiplib');
                     tipControl = new Tip({
                         // 浮层的显示模式，鼠标滑过显示
                         mode: 'over',
@@ -564,7 +466,6 @@ define( function(require){
                         },
 
                         onBeforeShow: function (obj) {
-
                             onBeforeShow(obj, this);
                         }
                     }).render();
