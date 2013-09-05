@@ -136,10 +136,14 @@ define( function(require){
         // 浮层整体水平偏移
         var layerOffsetLeft = conf.layerOffsetLeft || 0;
 
+        // 小箭头水平偏移
+        var arrowOffsetleft = conf.arrowOffsetleft || 0;
+
         // 修正浮层left
         layer.main.style.left = mainLeft - layerOffsetLeft + 'px';
         // 修正小箭头left
-        layer.elements.arrow.style.left = layerOffsetLeft + 'px';
+        layer.elements.arrow.style.left =
+            layerOffsetLeft + arrowOffsetleft + 'px';
     }
 
     /**
@@ -156,10 +160,14 @@ define( function(require){
         // 箭头left
         var arrowLeft = parseInt(layer.elements.arrow.style.left, 10);
 
+        // 小箭头水平偏移
+        var arrowOffsetleft = conf.arrowOffsetleft || 0;
+
         // 修正浮层left
         layer.main.style.left = mainLeft + layerOffsetLeft + 'px';
         // 修正小箭头left
-        layer.elements.arrow.style.left = arrowLeft - layerOffsetLeft + 'px';
+        layer.elements.arrow.style.left =
+            arrowLeft - layerOffsetLeft + arrowOffsetleft  + 'px';
 
     }
 
@@ -349,33 +357,6 @@ define( function(require){
         return html;
     }
 
-    /**
-     * 下拉菜单html by wanglei23
-     *
-     * @param {[type]} json v身份数据
-     * @return {[type]} 返回拼装好的标题html
-     */
-    function dropDownBodyHtml(json) {
-        var html = format(
-            'dropDownList',
-            {
-                // addhomepage    : json.addhomepage.text,
-                // addhomepageUrl : json.addhomepage.url,
-                // shield         : json.shield.text,
-                // shieldUrl      : json.shield.url,
-                share          : json.share.text,
-                shareUrl       : json.share.url,
-                favorite       : json.favorite.text,
-                favoriteUrl    : json.favorite.url,
-                appraise       : json.appraise.text,
-                appraiseUrl    : json.appraise.url,
-                report         : json.report.text,
-                reportUrl      : json.report.url
-            }
-        );
-        return html;
-    }
-
     // 根据数据，渲染模板
     function format(type, obj) {
         obj = obj || {};
@@ -429,8 +410,8 @@ define( function(require){
                 // var url = 'src/commitment/commitment.css';
 
                 // 测试机调试，引入css文件
-                // var url = 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
-                var url = 'http://0.cgzero.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
+                var url = 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
+                // var url = 'http://0.cgzero.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
 
                 // 线上，引入css文件
                 // var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/commitment0902/commitment.css';
@@ -450,7 +431,7 @@ define( function(require){
 
                 // 线上，抽出公共部分，引入pstiplib组件
                 var Tip = require('ecom/common/api/pstiplib0902/pstiplib');
-                
+
                     tipControl = new Tip({
                         // 浮层的显示模式，鼠标滑过显示
                         mode: 'over',

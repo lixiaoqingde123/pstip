@@ -35,28 +35,28 @@
 <h1>承诺保障icon</h1>
 <div id="ec_im_container">
     <span class="icons EC_PP">
-        <a class="icon icon-commitment ec-ui-commitment" href="#" data-tooltips="bl"
-            data-commitment="{ 
+        <a class="icon icon-commitment ec-ui-commitment" href="#" data-tooltips="br"
+            data-commitment="{
                 item1: {
-                    text: '商家承诺保障酒店预订', 
+                    text: '商家承诺保障酒店预订',
                     url: 'http://www.qq.com'
-                }, 
+                },
                 item2: {
-                    text: '商家承诺保障酒店预订', 
+                    text: '商家承诺保障酒店预订',
                     url: 'http://www.sina.com'
-                }, 
+                },
                 item3: {
-                    text: '商家承诺保障酒店预订', 
+                    text: '商家承诺保障酒店预订',
                     url: 'http://www.sohu.com'
-                }, 
+                },
                 item4: {
-                    text: '商家承诺保障酒店预订', 
+                    text: '商家承诺保障酒店预订',
                     url: 'http://www.baidu.com'
-                }, 
+                },
                 item5: {
-                    text: '商家承诺保障酒店预订', 
+                    text: '商家承诺保障酒店预订',
                     url: 'http://www.baidu.com'
-                } 
+                }
             }">
         </a>
     </span>
@@ -68,8 +68,8 @@ require.config({
     baseUrl: 'src',
     paths: {
         //配置测试机路径
-        // ecom: 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom'
-        ecom: 'http://0.cgzero.newoffline.bae.baidu.com/lib/ecom'
+        ecom: 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom'
+        // ecom: 'http://0.cgzero.newoffline.bae.baidu.com/lib/ecom'
     },
     packages: [ ]
 });
@@ -82,6 +82,7 @@ require( ['ecom/common/api/commitment0902/commitment'], function(tipapi) {
         triggers:"ec-ui-commitment",
         layerOffsetLeft:5,
         layerOffsetTop:5,
+        arrowOffsetleft: 8,
         hideDelay:50,
         statistics:{}
     };
