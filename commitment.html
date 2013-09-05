@@ -23,7 +23,7 @@
         margin: 0 5px 0 0;
     }
     .icon-commitment {
-        width: 32px;
+        width: 36px;
         background-position: 0px -819px;
     }
     </style>
@@ -67,14 +67,16 @@
 require.config({
     baseUrl: 'src',
     paths: {
-        ecom: 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom'
-        // pstiplib:'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/pstiplib0826/pstiplib'
+        //配置测试机路径
+        // ecom: 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom'
+        ecom: 'http://0.cgzero.newoffline.bae.baidu.com/lib/ecom'
     },
     packages: [ ]
 });
 
-//引入大搜索的tip
+// 引入测试机、线上js
 require( ['ecom/common/api/commitment0902/commitment'], function(tipapi) {
+// 引入本地js
 // require( ['commitment/commitment'], function(tipapi) {
     var opts = {
         triggers:"ec-ui-commitment",

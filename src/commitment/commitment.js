@@ -430,9 +430,10 @@ define( function(require){
 
                 // 测试机调试，引入css文件
                 // var url = 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
+                var url = 'http://0.cgzero.newoffline.bae.baidu.com/lib/ecom/common/api/commitment0902/commitment.css';
 
                 // 线上，引入css文件
-                var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/commitment0902/commitment.css';
+                // var url = 'http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/commitment0902/commitment.css';
 
 
 
