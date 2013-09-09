@@ -8,7 +8,7 @@
         position: absolute;
         left: 400px;
     }
-    .icons {
+    /*.icons {
         display: inline-block;
     }
     .icon {
@@ -17,7 +17,6 @@
         height: 16px;
         line-height: 16px;
         vertical-align: text-top;
-        /*background-image: url(http://a.baidu.com/xianzhi/wholeIconNew.gif);*/
         background-image: url(src/tipicon/wholeIconNew.gif);
         background-repeat: no-repeat;
         margin: 0 5px 0 0;
@@ -25,6 +24,46 @@
     .icon-commitment {
         width: 36px;
         background-position: 0px -819px;
+    }*/
+
+
+
+    .c-text{
+        display:inline-block;
+        height:12px;
+        padding:2px;
+        text-align:center;
+        vertical-align:
+        text-bottom;
+        font:normal normal 12px/12px simsun;
+        color:#fff;
+        overflow:hidden;
+    }
+    a.c-text{
+        text-decoration:none;
+    }
+    .c-text-empty {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        border: 1px solid #d8d8d8;
+        cursor: pointer;
+        color: #23b9fd;
+        background-color: #fff;
+    }
+    .c-text-empty:hover {
+        border-color: #388bff;
+    }
+    .c-text-empty:active {
+        border-color: #a2a6ab;
+        background-color: #f0f0f0;
+        box-shadow: inset 1px 1px 1px #c7c7c7;
+        -webkit-box-shadow: inset 1px 1px 1px #c7c7c7;
+        -moz-box-shadow: inset 1px 1px 1px #c7c7c7;
+        -o-box-shadow: inset 1px 1px 1px #c7c7c7;
+    }
+    .c-text-mult{
+        padding-left:5px;
+        padding-right:5px;
     }
     </style>
     <script type="text/javascript" src="src/tangram-1.3.9.source.js"></script>
@@ -35,7 +74,9 @@
 <h1>承诺保障icon</h1>
 <div id="ec_im_container">
     <span class="icons EC_PP">
-        <a class="icon icon-commitment ec-ui-commitment" href="#" data-tooltips="bl"
+        <i class="c-text c-text-empty c-text-mult ec-ui-commitment" data-tooltips="bl" data-commitment="{item1: {text: '商家承诺保障酒店预订',url: 'http://www.qq.com'},item2: {text: '商家承诺保障酒店预订',url: 'http://www.sina.com'},item3: {text: '商家承诺保障酒店预订',url: 'http://www.sohu.com'},item4: {text: '商家承诺保障酒店预订',url: 'http://www.baidu.com'},item5: {text: '商家承诺保障酒店预订',url: 'http://www.baidu.com'}}">承诺</i>
+        <br><br>
+        <!-- <a class="icon icon-commitment ec-ui-commitment" href="#" data-tooltips="bl"
             data-commitment="{
                 item1: {
                     text: '商家承诺保障酒店预订',
@@ -58,7 +99,7 @@
                     url: 'http://www.baidu.com'
                 }
             }">
-        </a>
+        </a> -->
     </span>
     <!-- <div class="ecl-ui-tip ecl-ui-tip-ps" style="left: 398px; top: 110px;"><div class="ecl-ui-tip-arrow ecl-ui-tip-arrow-bottom" style="left: 5px;"><em></em><ins></ins></div><div class="ecl-ui-tip-title" style="display: none;"></div><div class="ecl-ui-tip-body"><ul><li class="icon-item1"><a href="http://www.qq.com" target="_blank">商家承诺保障酒店预订</a></li><li class="icon-item2"><a href="http://www.sina.com" target="_blank">商家承诺保障酒店预订</a></li><li class="icon-item3"><a href="http://www.sohu.com" target="_blank">商家承诺保障酒店预订</a></li><li class="icon-item4"><a href="http://www.baidu.com" target="_blank">商家承诺保障酒店预订</a></li></ul></div></div> -->
 </div>
@@ -82,7 +123,7 @@ require( ['ecom/common/api/commitment0902/commitment'], function(tipapi) {
         triggers:"ec-ui-commitment",
         layerOffsetLeft:5,
         layerOffsetTop:5,
-        arrowOffsetleft: 8,
+        arrowOffsetLeft: 8,
         hideDelay:50,
         statistics:{}
     };

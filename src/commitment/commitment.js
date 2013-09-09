@@ -137,13 +137,13 @@ define( function(require){
         var layerOffsetLeft = conf.layerOffsetLeft || 0;
 
         // 小箭头水平偏移
-        var arrowOffsetleft = conf.arrowOffsetleft || 0;
+        var arrowOffsetLeft = conf.arrowOffsetLeft || 0;
 
         // 修正浮层left
         layer.main.style.left = mainLeft - layerOffsetLeft + 'px';
         // 修正小箭头left
         layer.elements.arrow.style.left =
-            layerOffsetLeft + arrowOffsetleft + 'px';
+            layerOffsetLeft + arrowOffsetLeft + 'px';
     }
 
     /**
@@ -161,13 +161,13 @@ define( function(require){
         var arrowLeft = parseInt(layer.elements.arrow.style.left, 10);
 
         // 小箭头水平偏移
-        var arrowOffsetleft = conf.arrowOffsetleft || 0;
+        var arrowOffsetLeft = conf.arrowOffsetLeft || 0;
 
         // 修正浮层left
         layer.main.style.left = mainLeft + layerOffsetLeft + 'px';
         // 修正小箭头left
         layer.elements.arrow.style.left =
-            arrowLeft - layerOffsetLeft + arrowOffsetleft  + 'px';
+            arrowLeft - layerOffsetLeft + arrowOffsetLeft  + 'px';
 
     }
 
