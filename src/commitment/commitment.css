@@ -205,6 +205,9 @@ margin-right:5px;
 .ecl-ui-tip-ps ul.icon-commitment-wraper {
   margin-top: -10px;
   *margin-top: -2px;
+
+  /*线上环境可能会有冲突，因此这里用margin-right: 50px;覆盖掉*/
+  margin-right: -40px;
 }
 
 .ecl-ui-tip-ps ul.icon-commitment-wraper li {
