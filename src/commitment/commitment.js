@@ -20,7 +20,12 @@ define( function(require){
         item1 : ''
             + '<li class="icon-item1">'
             +     '<span>'
-            +         '<a href=#{url} target="_blank">'
+            +         '<a href=#{url} target="_blank" onmousedown="return c({'
+            +               '\'title\': this.innerHTML,'
+            +               '\'url\': this.href,'
+            +               '\'fm\': \'#{fm}\','
+            +               '\'p1\': \'#{p1}\''
+            +               '});">'
             +             '#{text}'
             +         '</a>'
             +     '</span>'
@@ -29,7 +34,12 @@ define( function(require){
         item2 : ''
             + '<li class="icon-item2">'
             +     '<span>'
-            +         '<a href=#{url} target="_blank">'
+            +         '<a href=#{url} target="_blank" onmousedown="return c({'
+            +               '\'title\': this.innerHTML,'
+            +               '\'url\': this.href,'
+            +               '\'fm\': \'#{fm}\','
+            +               '\'p1\': \'#{p1}\''
+            +               '});">'
             +             '#{text}'
             +         '</a>'
             +     '</span>'
@@ -38,7 +48,12 @@ define( function(require){
         item3 : ''
             + '<li class="icon-item3">'
             +     '<span>'
-            +         '<a href=#{url} target="_blank">'
+            +         '<a href=#{url} target="_blank" onmousedown="return c({'
+            +               '\'title\': this.innerHTML,'
+            +               '\'url\': this.href,'
+            +               '\'fm\': \'#{fm}\','
+            +               '\'p1\': \'#{p1}\''
+            +               '});">'
             +             '#{text}'
             +         '</a>'
             +     '</span>'
@@ -47,7 +62,12 @@ define( function(require){
         item4 : ''
             + '<li class="icon-item4">'
             +     '<span>'
-            +         '<a href=#{url} target="_blank">'
+            +         '<a href=#{url} target="_blank" onmousedown="return c({'
+            +               '\'title\': this.innerHTML,'
+            +               '\'url\': this.href,'
+            +               '\'fm\': \'#{fm}\','
+            +               '\'p1\': \'#{p1}\''
+            +               '});">'
             +             '#{text}'
             +         '</a>'
             +     '</span>'
@@ -56,7 +76,12 @@ define( function(require){
         item5 : ''
             + '<li class="icon-item5">'
             +     '<span>'
-            +         '<a href=#{url} target="_blank">'
+            +         '<a href=#{url} target="_blank" onmousedown="return c({'
+            +               '\'title\': this.innerHTML,'
+            +               '\'url\': this.href,'
+            +               '\'fm\': \'#{fm}\','
+            +               '\'p1\': \'#{p1}\''
+            +               '});">'
             +             '#{text}'
             +         '</a>'
             +     '</span>'
@@ -300,7 +325,9 @@ define( function(require){
             ?
             format('item1', {
                 text: json.item1.text,
-                url: json.item1.url
+                url: json.item1.url,
+                fm: json.item1.fm,
+                p1: json.item1.p1
             })
             :
             '';
@@ -310,7 +337,9 @@ define( function(require){
             ?
             format('item2', {
                 text: json.item2.text,
-                url: json.item2.url
+                url: json.item2.url,
+                fm: json.item2.fm,
+                p1: json.item2.p1
             })
             :
             '';
@@ -320,7 +349,9 @@ define( function(require){
             ?
             format('item3', {
                 text: json.item3.text,
-                url: json.item3.url
+                url: json.item3.url,
+                fm: json.item3.fm,
+                p1: json.item3.p1
             })
             :
             '';
@@ -330,7 +361,9 @@ define( function(require){
             ?
             format('item4', {
                 text: json.item4.text,
-                url: json.item4.url
+                url: json.item4.url,
+                fm: json.item4.fm,
+                p1: json.item4.p1
             })
             :
             '';
@@ -340,7 +373,9 @@ define( function(require){
             ?
             format('item5', {
                 text: json.item5.text,
-                url: json.item5.url
+                url: json.item5.url,
+                fm: json.item5.fm,
+                p1: json.item5.p1
             })
             :
             '';
