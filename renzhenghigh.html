@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>大搜索环境V身份浮层</title>
+    <style type="text/css">
+    #ec_im_container{
+        position: absolute;
+        left: 400px;
+    }
+
+    .c-icon {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        vertical-align: text-bottom;
+        font-style: normal;
+        overflow: hidden;
+        background: url(http://s1.bdstatic.com/r/www/cache/static/global/img/icons_db1b0e67.png) no-repeat 0 0;
+        _background-image: url(http://s1.bdstatic.com/r/www/cache/static/global/img/icons_190dda05.gif);
+    }
+
+    .c-icon-v, .c-icon-v-noborder {
+        background-position: 0 -48px;
+    }
+
+    .c-icon-high-v, .c-icon-high-v-noborder {
+        background-position: -720px -48px;
+    }
+
+    .c-icon-unfold, .c-icon-fold, .c-icon-chevron-unfold, .c-icon-chevron-fold, .c-icon-v, .c-icon-hui, .c-icon-bao, .c-icon-person, .c-icon-download, .c-icon-lyric, .c-icon-high-v {
+        background-color: #fff;
+        border: 1px solid #d8d8d8;
+        cursor: pointer;
+    }
+
+    .icon-certify {
+        /*background-position: 0px -64px;*/
+    }
+
+    .c-icon-unfold:hover, .c-icon-fold:hover, .c-icon-chevron-unfold:hover, .c-icon-chevron-fold:hover, .c-icon-v:hover, .c-icon-hui:hover, .c-icon-bao:hover, .c-icon-person:hover, .c-icon-download:hover, .c-icon-lyric:hover, .c-icon-high-v:hover {
+        border-color: #388bff;
+    }
+
+    </style>
+    <script type="text/javascript" src="src/tangram-1.3.9.source.js"></script>
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-3-0/esl.js"></script>
+</head>
+
+<body>
+<h1>大搜索环境V身份浮层</h1>
+    <div id="ec_im_container">
+    <span class="icons EC_PP">
+        <i class="c-icon icon-certify c-icon-high-v efc-cert _ecui_tips" data-tip-limite="true" data-tooltips="bc" data-renzheng="{a: {f: 'a', billing: true }, text: 'ddd', title: '携程旅行网携程旅行网携程旅行网携程旅行网携程旅行网：', favorite: {billing: true, fm: 'im', rsvMt: '', p1: '2', url: ''}, appraise: {fm: 'im', rsvMt: '', p1: '2', url: ''}, report: {fm: 'im', rsvMt: '', p1: '2', url: ''}, identity: {a: {billing: true, text: '百度身份认证', fm: 'im', rsvMt: '1017', p1: '2', url: ''}, text: '', credit: '3'} }"></i> </span>
+</div>
+
+<!-- <div style="top:10px;" class="ecl-ui-tip ecl-ui-tip-ps ecl-ui-tip-ps-limite-width"><div class="ecl-ui-tip-arrow ecl-ui-tip-arrow-bottom" style="left: 58px;"><em></em><ins></ins></div><div class="ecl-ui-tip-title"><strong class="ecl-ui-tip-ps-title">携程旅行网携程旅行网携程旅行网携程旅行网携程旅行网：</strong><div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-top"><span class="EC_PP"><a  href="" target="_blank">收藏</a></span>&nbsp;|&nbsp;<span><a  href="">评论</a></span></div></div><div class="ecl-ui-tip-body"><ul><li class="icon-medical"><span>携程旅携程旅</span></li><li class="icon-identity">已经通过<span class="EC_PP"><a>百度身份认证</a></span></li><li class="icon-empty"><div class="ecl-ui-tip-ps-level ecl-ui-tip-ps-level3">百度信誉星级</div></li></ul><div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-bottom"><span><a href="">举报</a></span></div></div></div>
+
+<div style="top:150px;" class="ecl-ui-tip ecl-ui-tip-ps ecl-ui-tip-ps-limite-width"><div class="ecl-ui-tip-arrow ecl-ui-tip-arrow-bottom" style="left: 58px;"><em></em><ins></ins></div><div class="ecl-ui-tip-title"><strong class="ecl-ui-tip-ps-title">携程旅行网携</strong><div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-top"><span class="EC_PP"><a  href="" target="_blank">收藏</a></span>&nbsp;|&nbsp;<span><a  href="">评论</a></span></div></div><div class="ecl-ui-tip-body"><ul><li class="icon-medical"><span>携程旅携程旅</span></li><li class="icon-identity">已经通过<span class="EC_PP"><a>百度身份认证</a></span></li><li class="icon-empty"><div class="ecl-ui-tip-ps-level ecl-ui-tip-ps-level3">百度信誉星级</div></li></ul><div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-bottom"><span><a href="">举报</a></span></div></div></div>
+
+
+<div style="top:300px;" class="ecl-ui-tip ecl-ui-tip-ps"><div class="ecl-ui-tip-arrow ecl-ui-tip-arrow-bottom" style="left: 58px;"><em></em><ins></ins></div><div class="ecl-ui-tip-title"><strong class="ecl-ui-tip-ps-title">携程旅行网携程旅行网携程旅行网携程旅行网携程旅行网：</strong><div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-top"><span class="EC_PP"><a  href="" target="_blank">收藏</a></span>&nbsp;|&nbsp;<span><a  href="">评论</a></span></div></div><div class="ecl-ui-tip-body"><ul><li class="icon-medical"><span>携程旅携程旅</span></li><li class="icon-identity">已经通过<span class="EC_PP"><a>百度身份认证</a></span></li><li class="icon-empty"><div class="ecl-ui-tip-ps-level ecl-ui-tip-ps-level3">百度信誉星级</div></li></ul><div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-bottom"><span><a href="">举报</a></span></div></div></div>
+
+<div style="top:450px;" class="ecl-ui-tip ecl-ui-tip-ps"><div class="ecl-ui-tip-arrow ecl-ui-tip-arrow-bottom" style="left: 58px;"><em></em><ins></ins></div><div class="ecl-ui-tip-title"><strong class="ecl-ui-tip-ps-title">携程旅行网携</strong><div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-top"><span class="EC_PP"><a  href="" target="_blank">收藏</a></span>&nbsp;|&nbsp;<span><a  href="">评论</a></span></div></div><div class="ecl-ui-tip-body"><ul><li class="icon-medical"><span>携程旅携程旅</span></li><li class="icon-identity">已经通过<span class="EC_PP"><a>百度身份认证</a></span></li><li class="icon-empty"><div class="ecl-ui-tip-ps-level ecl-ui-tip-ps-level3">百度信誉星级</div></li></ul><div class="ecl-ui-tip-ps-right ecl-ui-tip-ps-right-bottom"><span><a href="">举报</a></span></div></div></div> -->
+<script type="text/javascript">
+require.config({
+    baseUrl: 'src',
+    paths: {
+        //配置测试机路径
+        ecom: 'http://1.wlstatic.newoffline.bae.baidu.com/lib/ecom'
+    },
+    packages: [ ]
+});
+//引入大搜索的tip
+// require( ['ecom/common/api/renzhenghigh1015/renzhenghigh'], function(tipapi) {
+require( ['renzhenghigh/renzhenghigh'], function(tipapi) {
+    var opts = {
+        triggers:"efc-cert",
+        layerOffsetLeft:5,
+        layerOffsetTop:5,
+        hideDelay:50,
+        statistics:{
+            identity:{
+                // url:'http://trustrcv.baidu.com/v.php',
+                // query:{tag:'vshenfenhover'}
+            },
+            coupon:{
+                // url:'http://1trustrcv.baidu.com/v.php',
+                // query:{tag:'coupon'}
+            },
+            telephone:{
+                // url:'http://3trustrcv.baidu.com/v.php',
+                // query:{tag:'telephone'}
+            }
+        }
+    };
+    tipapi.init(opts);
+});
+
+</script>
+</body>
+</html>
