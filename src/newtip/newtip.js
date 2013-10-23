@@ -235,6 +235,9 @@ define( function(require){
         };
     })();
 
+    function getParentElem(elem) {
+        return elem.parentElement || elem.parentNode || null;
+    }
 
     // 根据数据，渲染模板
     function format(type, obj) {
@@ -488,7 +491,7 @@ define( function(require){
     function renderCouponTip(opts) {
         var couponDomList = baidu.q('c-icon-hui');
         for (var i = 0, len = couponDomList.length; i < len; i++) {
-            var parentDom = couponDomList[i].parentNode;
+            var parentDom = getParentElem(couponDomList[i]);
             if (
                 parentDom
                 &&
@@ -517,7 +520,7 @@ define( function(require){
     function renderTelTip(opts) {
         var phoneDomList = baidu.q('c-icon-phone');
         for (var i = 0, len = phoneDomList.length; i < len; i++) {
-            var parentDom = phoneDomList[i].parentNode;
+            var parentDom = getParentElem(phoneDomList[i]);
             if (
                 parentDom
                 &&
@@ -545,7 +548,7 @@ define( function(require){
     function renderCommitmentTip(opts) {
         var commitmentDomList = baidu.q('icon-commitment');
         for (var i = 0, len = commitmentDomList.length; i < len; i++) {
-            var parentDom = commitmentDomList[i].parentNode;
+            var parentDom = getParentElem(commitmentDomList[i]);
             if (
                 parentDom
                 &&
