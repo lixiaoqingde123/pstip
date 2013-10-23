@@ -164,10 +164,52 @@ define( function(require){
         phone : ''
             + '<div class="c-tip-info">'
             +     '#{text}'
-            + '</div>'
+            + '</div>',
+
+        // 承诺模板
+        commitmentList : ''
+            + '<div class="c-tip-info">'
+            +     '<ul>'
+            +         '#{commitmentContent}'
+            +     '</ul>'
+            + '</div>',
+
+        commitmentItem : ''
+            +  '<li class="c-tip-item-i">'
+            +      '<span>'
+            +          '<i class="c-icon c-icon-circle-blue c-gap-icon-right-small c-tip-item-icon"></i>'
+            +          '<a href=#{url} target="_blank" onmousedown="return c({'
+            +               '\'title\': this.innerHTML,'
+            +               '\'url\': this.href,'
+            +               '\'fm\': \'#{fm}\','
+            +               '\'p1\': \'#{p1}\''
+            +               '});">'
+            +             '#{text}'
+            +          '</a>'
+            +      '</span>'
+            +  '</li>'
     };
 
-    var conf = {};
+    var conf = {
+        offset: {
+            identity: {
+                x: 0,
+                y: 30
+            },
+            commitment: {
+                x: 0,
+                y: 30
+            },
+            coupon: {
+                x: 0,
+                y: 30
+            },
+            tel: {
+                x: 0,
+                y: 30
+            }
+        }
+    };
 
     var sendLogUrl = '';
 
@@ -323,6 +365,33 @@ define( function(require){
     }
 
     /**
+     * 承诺浮层html
+     * @param  {Object} json v身份数据
+     * @return {string}      返回拼装好的标题html
+     */
+    function commitmentBodyHtml(json) {
+        var itemHtml = '';
+        for (var key in json) {
+            if (json.hasOwnProperty(key)) {
+                itemHtml += format('commitmentItem', {
+                    text: json[key].text,
+                    url: json[key].url,
+                    fm: json[key].fm,
+                    p1: json[key].p1
+                });
+            }
+        }
+
+        var html = format(
+            'commitmentList',
+            {
+                commitmentContent : itemHtml,
+            }
+        );
+        return html;
+    }
+
+    /**
      * 显示浮层时，发送日志
      *
      * @param {[type]} logType 日志类型：
@@ -372,34 +441,35 @@ define( function(require){
         }
         else {
             checkTipComponentTimer && clearTimeout(checkTipComponentTimer);
-            renderCertTip(opts);
+            renderIdentityTip(opts);
             renderCouponTip(opts);
             renderTelTip(opts);
+            renderCommitmentTip(opts);
         }
     }
 
-    function renderCertTip(opts) {
+    function renderIdentityTip(opts) {
         // 自然结果和商业结果认证icon节点集合
-        var certDomList = baidu.q('c-icon-v').concat(baidu.q('c-icon-person'));
-        for (var i = 0, len = certDomList.length; i < len; i++) {
+        var identityDomList = baidu.q('c-icon-v').concat(baidu.q('c-icon-person'));
+        for (var i = 0, len = identityDomList.length; i < len; i++) {
             // 筛选商业结果
             if (
-                baidu.dom.getAncestorByClass(certDomList[i], 'EC_ppim_top')
+                baidu.dom.getAncestorByClass(identityDomList[i], 'EC_ppim_top')
                 ||
-                baidu.dom.getAncestorByClass(certDomList[i], 'EC_im')
+                baidu.dom.getAncestorByClass(identityDomList[i], 'EC_im')
                 ||
-                baidu.dom.getAncestorByClass(certDomList[i], 'ec_pp_top')
+                baidu.dom.getAncestorByClass(identityDomList[i], 'ec_pp_top')
             ) {
-                var certData = getDataFromAttr(
-                    certDomList[i],
+                var identityData = getDataFromAttr(
+                    identityDomList[i],
                     'data-renzheng'
                 );
-                var content = authBodyHtml(certData);
+                var content = authBodyHtml(identityData);
                 var tip = new bds.se.tip({
-                    target: certDomList[i],
-                    title: certData.title,
+                    target: identityDomList[i],
+                    title: identityData.title,
                     content: content,
-                    offset: {
+                    offset: conf.offset.identity || {
                         x: 0,
                         y: 30
                     }
@@ -420,18 +490,18 @@ define( function(require){
                 &&
                 parentDom.className.search(/\bEC_PP\b/) != -1
             ) {
-                var certData = getDataFromAttr(
+                var couponData = getDataFromAttr(
                     couponDomList[i],
                     'data-coupon'
                 );
 
-                var content = format('coupon', certData);
+                var content = format('coupon', couponData);
 
                 var tip = new bds.se.tip({
                     target: couponDomList[i],
                     title: youhuixiangqing + ':',
                     content: content,
-                    offset: {
+                    offset: conf.offset.coupon || {
                         x: 0,
                         y: 30
                     }
@@ -455,12 +525,37 @@ define( function(require){
                 );
 
                 var content = format('phone', phoneData);
-
                 var tip = new bds.se.tip({
                     target: phoneDomList[i],
                     title: zixundianhua + ':',
                     content: content,
-                    offset: {
+                    offset: conf.offset.tel || {
+                        x: 0,
+                        y: 30
+                    }
+                });
+            }
+        }
+    }
+
+    function renderCommitmentTip(opts) {
+        var commitmentDomList = baidu.q('icon-commitment');
+        for (var i = 0, len = commitmentDomList.length; i < len; i++) {
+            var parentDom = commitmentDomList[i].parentNode;
+            if (
+                parentDom
+                &&
+                parentDom.className.search(/\bEC_PP\b/) != -1
+            ) {
+                var commitmentData = getDataFromAttr(
+                    commitmentDomList[i],
+                    'data-commitment'
+                );
+                var content = commitmentBodyHtml(commitmentData);
+                var tip = new bds.se.tip({
+                    target: commitmentDomList[i],
+                    content: content,
+                    offset: conf.offset.commitment || {
                         x: 0,
                         y: 30
                     }
@@ -471,7 +566,7 @@ define( function(require){
 
     function init(opts) {
         baidu.dom.ready(function() {
-            conf = baidu.object.extend(conf, opts || {});
+            baidu.object.extend(conf, opts || {});
             checkTipComponent(conf);
         });
     }
