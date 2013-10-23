@@ -140,7 +140,8 @@ define( function(require){
             + '<li class="c-tip-item-i">'
             +     baiduxinyuxingji
             +     '<i class="c-icon c-icon-star-gray">'
-            +         '<i style="width: #{credit}%;" class="c-icon c-icon-star"></i>'
+            +         '<i style="width: #{credit}%;" '
+            +               'class="c-icon c-icon-star"></i>'
             +     '</i>'
             + '</li>',
 
@@ -177,7 +178,8 @@ define( function(require){
         commitmentItem : ''
             +  '<li class="c-tip-item-i">'
             +      '<span>'
-            +          '<i class="c-icon c-icon-circle-blue c-gap-icon-right-small c-tip-item-icon"></i>'
+            +          '<i class="c-icon c-icon-circle-blue '
+            +                   'c-gap-icon-right-small c-tip-item-icon"></i>'
             +          '<a href=#{url} target="_blank" onmousedown="return c({'
             +               '\'title\': this.innerHTML,'
             +               '\'url\': this.href,'
@@ -450,7 +452,9 @@ define( function(require){
 
     function renderIdentityTip(opts) {
         // 自然结果和商业结果认证icon节点集合
-        var identityDomList = baidu.q('c-icon-v').concat(baidu.q('c-icon-person'));
+        var identityDomList =
+                    baidu.q('c-icon-v').concat(baidu.q('c-icon-person'));
+
         for (var i = 0, len = identityDomList.length; i < len; i++) {
             // 筛选商业结果
             if (
