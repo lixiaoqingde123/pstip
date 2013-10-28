@@ -467,6 +467,36 @@ define( function(require){
                 ||
                 baidu.dom.getAncestorByClass(identityDomList[i], 'ec_pp_top')
             ) {
+                var offset = conf.offset.identity || {
+                    x: 0,
+                    y: 30
+                };
+
+                var arrow = {
+                    has :  1,
+                    offset : 10
+                };
+
+                if (identityDomList[i].getAttribute('data-tip-limite')) {
+                    var rightContainerOffset = parseInt(
+                        baidu.dom.getPosition(baidu.dom.g('ec_im_container')).left,
+                        10
+                    );
+                    var domOffset = parseInt(
+                        baidu.dom.getPosition(identityDomList[i]).left,
+                        10
+                    );
+                    var sub = Math.abs(rightContainerOffset - domOffset);
+                    offset = {
+                        x: sub,
+                        y: 30
+                    }
+                    arrow = {
+                        has :  1,
+                        offset : sub
+                    }
+                }
+
                 var identityData = getDataFromAttr(
                     identityDomList[i],
                     'data-renzheng'
@@ -476,10 +506,8 @@ define( function(require){
                     target: identityDomList[i],
                     title: identityData.title,
                     content: content,
-                    offset: conf.offset.identity || {
-                        x: 0,
-                        y: 30
-                    }
+                    offset: offset,
+                    arrow: arrow
                 });
                 tip.onShow = function(){
                     sendLog('identity');
