@@ -362,7 +362,8 @@ define( function(require){
                 airline: airline,
                 dfa: dfa,
                 personal: personal
-            });
+            }
+        );
 
         var contentHTML = '' + list;
 
@@ -390,7 +391,7 @@ define( function(require){
         var html = format(
             'commitmentList',
             {
-                commitmentContent : itemHtml,
+                commitmentContent : itemHtml
             }
         );
         return html;
