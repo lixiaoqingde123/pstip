@@ -12,7 +12,7 @@ define( function(require){
             return baidu.dom.getAncestorBy(i,function(l) {
                 return baidu.dom.hasClass(l,k);
             });
-        }
+        };
     }
 
     /**
@@ -48,7 +48,7 @@ define( function(require){
     /**
      * 咨询电话
      */
-    var zixundianhua = '\u54a8\u8be2\u7535\u8bdd'
+    var zixundianhua = '\u54a8\u8be2\u7535\u8bdd';
 
     var TPL = {
         // a标签 链接模板
@@ -145,17 +145,16 @@ define( function(require){
             +     '</i>'
             + '</li>',
 
-
         // 惠模板
         coupon : ''
             + '<div class="c-tip-info EC_PP">'
-            +     '<a target="_blank" href="#{url}" onmousedown="return c({'
+            +     '<a target="_blank" href="#{url}" class="coupon-ck" onmousedown="return c({'
             +         '\'title\':this.innerHTML,'
             +         '\'url\':this.href,'
             +         '\'fm\':\'#{fm}\','
             +         '\'rsv_ct\':\'#{rsv_ct}\','
             +         '\'p1\':#{p1},'
-            +         '\'p2\':#{p2},'
+            +         '\'p2\':#{p2}'
             +         '});">'
             +         '#{text}'
             +     '</a>'
@@ -178,7 +177,7 @@ define( function(require){
         commitmentItem : ''
             +  '<li class="c-tip-item-i">'
             +      '<span>'
-            +          '<i class="c-icon c-icon-circle-blue '
+            +          '<i class="c-icon c-icon-circle-blue-s '
             +                   'c-gap-icon-right-small c-tip-item-icon"></i>'
             +          '<a href=#{url} target="_blank" onmousedown="return c({'
             +               '\'title\': this.innerHTML,'
@@ -448,7 +447,7 @@ define( function(require){
         else {
             checkTipComponentTimer && clearTimeout(checkTipComponentTimer);
             renderIdentityTip(opts);
-            renderCouponTip(opts);
+            // renderCouponTip(opts);
             renderTelTip(opts);
             renderCommitmentTip(opts);
         }
@@ -491,11 +490,11 @@ define( function(require){
                     offset = {
                         x: sub,
                         y: 30
-                    }
+                    };
                     arrow = {
                         has :  1,
                         offset : sub
-                    }
+                    };
                 }
 
                 var identityData = getDataFromAttr(
@@ -512,7 +511,7 @@ define( function(require){
                 });
                 tip.onShow = function(){
                     sendLog('identity');
-                }
+                };
             }
         }
     }
@@ -530,9 +529,7 @@ define( function(require){
                     couponDomList[i],
                     'data-coupon'
                 );
-
                 var content = format('coupon', couponData);
-
                 var tip = new bds.se.tip({
                     target: couponDomList[i],
                     title: youhuixiangqing + ':',
@@ -542,6 +539,101 @@ define( function(require){
                         y: 30
                     }
                 });
+                // var ckData = couponDomList[i].getAttribute('ck-data');
+                // var ckDom = baidu.dom.q('coupon-ck', tip.content)[0];
+                // if (ckDom) {
+                //     (function () {
+                //         var b = 0,
+                //             c, a, q, p, o, l, k, d, r, g, j, u;
+                //         a = q = p = o = l = k = d = r = g = j = u = 0;
+
+                //         function s(w) {
+                //             var i = window.event || w;
+                //             u = i.target || i.srcElement;
+                //             while (u && u.tagName != "A") {
+                //                 u = u.parentNode
+                //             }
+                //             r = new Date().getTime();
+                //             a = 9999;
+                //             q = i.clientX;
+                //             p = i.clientY;
+                //             if (!g) {
+                //                 k = 0
+                //             } else {
+                //                 k = r - g
+                //             } if (v()) {
+                //                 n()
+                //             }
+                //         }
+                //         function e() {
+                //             j = new Date().getTime();
+                //             a = j - r;
+                //             if (v()) {
+                //                 n()
+                //             }
+                //         }
+                //         function h(w) {
+                //             var i = window.event || w;
+                //             b += 1;
+                //             if (!o) {
+                //                 o = i.clientX
+                //             }
+                //             if (!l) {
+                //                 l = i.clientY
+                //             }
+                //             g = new Date().getTime()
+                //         }
+                //         function v() {
+                //             c = 0;
+                //             if (d = /link\?url\=([^\&]+)/.exec(u.href)) {
+                //                 for (var x = 0; x < (((b * ckData) % 99) + 9); ++x) {
+                //                     var w = d[1].length < 20 ? d[1].length : 20;
+                //                     c += d[1].charCodeAt((a * x) % w)
+                //                 }
+                //                 return true
+                //             } else {
+                //                 if (d = /\?url\=([^\.]+)\./.exec(u.href)) {
+                //                     for (var x = 0; x < (((b * ckData) % 99) + 9); ++x) {
+                //                         c += d[1].charCodeAt((a * x) % d[1].length)
+                //                     }
+                //                     return true
+                //                 }
+                //             }
+                //             return false
+                //         }
+                //         function n() {
+                //             var w = "&ck=" + [c, b, a, q, p, o, l, k].join(".");
+                //             if (u.href) {
+                //                 var i = u.href;
+                //                 if (i.indexOf("&ck=") == -1) {
+                //                     u.href += w
+                //                 } else {
+                //                     u.href = i.replace(/&ck=[\w.]*/, w)
+                //                 }
+                //             }
+                //         }
+                //         function m(z, y, x) {
+                //             for (var w in y) {
+                //                 if (window.attachEvent) {
+                //                     z.attachEvent("on" + y[w], x[w])
+                //                 } else {
+                //                     z.addEventListener(y[w], x[w], false)
+                //                 }
+                //             }
+                //         }
+                //         m(ckDom, ["mouseover", "mousedown", "mouseup"], [
+                //             function (i) {
+                //                 h(i)
+                //             },
+                //             function (i) {
+                //                 s(i)
+                //             },
+                //             function () {
+                //                 e()
+                //             }
+                //         ])
+                //     })();
+                // }
             }
         }
     }
