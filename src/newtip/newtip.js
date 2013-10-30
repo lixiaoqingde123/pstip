@@ -667,7 +667,7 @@ define( function(require){
     }
 
     function renderCommitmentTip(opts) {
-        var commitmentDomList = baidu.q('icon-commitment');
+        var commitmentDomList = baidu.q('c-icon-nuo');
         for (var i = 0, len = commitmentDomList.length; i < len; i++) {
             var parentDom = getParentElem(commitmentDomList[i]);
             if (
