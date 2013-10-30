@@ -177,7 +177,7 @@ define( function(require){
         commitmentItem : ''
             +  '<li class="c-tip-item-i">'
             +      '<span>'
-            +          '<i class="c-icon c-icon-circle-blue-s '
+            +          '<i class="c-icon c-icon-circle-blue-s icon-commitment-i '
             +                   'c-gap-icon-right-small c-tip-item-icon"></i>'
             +          '<a href=#{url} target="_blank" onmousedown="return c({'
             +               '\'title\': this.innerHTML,'
