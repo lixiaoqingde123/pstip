@@ -90,7 +90,7 @@ define( function(require){
             + '#{starlevel}',
 
         // 企业v传入自定义图片
-        identityiImg : ''
+        identityImg : ''
             + '<li class="c-tip-item-i">'
             +     '<img class="c-customicon c-gap-icon-right-small '
             +                 'c-tip-item-icon" src="#{img}">'
@@ -344,9 +344,21 @@ define( function(require){
         // 医疗 html
         var medical = dataForamtForRow('medical' ,json.medical);
         // 企业加v html
-        var identity = dataForamtForRow('identity',json.identity);
+        var identity;
+        if (json.identity && json.identity.img) {
+            identity = dataForamtForRow('identityImg',json.identity);
+        }
+        else {
+            identity = dataForamtForRow('identity',json.identity);
+        }
         // 个人加v html
-        var personal = dataForamtForRow('personal',json.personal);
+        var personal;
+        if (json.personal && json.personal.img) {
+            personal = dataForamtForRow('personalImg',json.personal);
+        }
+        else {
+            personal = dataForamtForRow('personal',json.personal);
+        }
         // 航协 html
         var airline = dataForamtForRow('airline', json.airline);
         // 药监局 html
@@ -456,7 +468,9 @@ define( function(require){
     function renderIdentityTip(opts) {
         // 自然结果和商业结果认证icon节点集合
         var identityDomList =
-                    baidu.q('c-icon-v').concat(baidu.q('c-icon-person'));
+                    baidu.q('c-icon-v')
+                        .concat(baidu.q('c-icon-high-v'))
+                        .concat(baidu.q('c-icon-person'));
 
         for (var i = 0, len = identityDomList.length; i < len; i++) {
             // 筛选商业结果
@@ -655,7 +669,7 @@ define( function(require){
                 var content = format('phone', phoneData);
                 var tip = new bds.se.tip({
                     target: phoneDomList[i],
-                    title: zixundianhua + ':',
+                    title: zixundianhua + '：',
                     content: content,
                     offset: conf.offset.tel || {
                         x: 0,
