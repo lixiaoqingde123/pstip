@@ -195,19 +195,19 @@ define( function(require){
         offset: {
             identity: {
                 x: 0,
-                y: 30
+                y: 25
             },
             commitment: {
                 x: 0,
-                y: 30
+                y: 25
             },
             coupon: {
                 x: 0,
-                y: 30
+                y: 25
             },
             tel: {
                 x: 0,
-                y: 30
+                y: 25
             }
         }
     };
@@ -483,7 +483,7 @@ define( function(require){
             ) {
                 var offset = conf.offset.identity || {
                     x: 0,
-                    y: 30
+                    y: 25
                 };
 
                 var arrow = {
@@ -503,7 +503,7 @@ define( function(require){
                     var sub = Math.abs(rightContainerOffset - domOffset);
                     offset = {
                         x: sub,
-                        y: 30
+                        y: 25
                     };
                     arrow = {
                         has :  1,
@@ -550,7 +550,7 @@ define( function(require){
                     content: content,
                     offset: conf.offset.coupon || {
                         x: 0,
-                        y: 30
+                        y: 25
                     }
                 });
                 // var ckData = couponDomList[i].getAttribute('ck-data');
@@ -673,7 +673,7 @@ define( function(require){
                     content: content,
                     offset: conf.offset.tel || {
                         x: 0,
-                        y: 30
+                        y: 25
                     }
                 });
             }
@@ -699,7 +699,7 @@ define( function(require){
                     content: content,
                     offset: conf.offset.commitment || {
                         x: 0,
-                        y: 30
+                        y: 25
                     }
                 });
             }
