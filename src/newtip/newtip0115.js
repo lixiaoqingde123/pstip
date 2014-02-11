@@ -3,36 +3,24 @@
  * @author Wanglei [wanglei23@baidu.com]
  */
 
-define(function (require) {
+define( function(require) {
 
-    /**
-     * 已经通过
-     */
+    // 已经通过
     var yijingtonguo = '\u5df2\u7ecf\u901a\u8fc7';
 
-    /**
-     * 百度信誉星级
-     */
+    // 百度信誉星级
     var baiduxinyuxingji = '\u767e\u5ea6\u4fe1\u8a89\u661f\u7ea7';
 
-    /**
-     * 具有
-     */
+    // 具有
     var juyou = '\u5177\u6709';
 
-    /**
-     * 百度身份认证
-     */
+    // 百度身份认证
     var baidushenfenrenzheng = '\u767e\u5ea6\u8eab\u4efd\u8ba4\u8bc1';
 
-    /**
-     * 优惠详情
-     */
+    // 优惠详情
     var youhuixiangqing = '\u4f18\u60e0\u8be6\u60c5';
 
-    /**
-     * 咨询电话
-     */
+    // 咨询电话
     var zixundianhua = '\u54a8\u8be2\u7535\u8bdd';
 
     /**
@@ -284,7 +272,7 @@ define(function (require) {
      * from tangram
      *
      * @param  {Object} json        需要解析的json对象
-     * @param  {Function?} replacerOpt 对值进行特殊处理的函数，
+     * @param  {?Function} replacerOpt 对值进行特殊处理的函数，
      *                                     function (value, key)
      */
     function jsonToQuery (json, replacerOpt) {
@@ -326,7 +314,7 @@ define(function (require) {
             data =
                 data.length == 1
                     ?
-        /* ie 下 Object.prototype.toString.call(null) == '[object Object]' */
+            // ie 下 Object.prototype.toString.call(null) == '[object Object]'
                     (
                         opts !== null
                             && (/\[object Array\]|\[object Object\]/
@@ -367,6 +355,7 @@ define(function (require) {
         var _method = fn;
         var _slice = Array.prototype.slice;
         var args = _slice.call(arguments, 2);
+
         return function () {
             var array = _slice.call(arguments, 0);
             _method.apply(context, args.concat(array));
@@ -404,9 +393,9 @@ define(function (require) {
     /**
      * 格式化链接数据
      *
-     * @param {[type]} obj 链接数据
-     * @param {[type]} text 链接文本
-     * @return {[type]} 返回拼装好的html
+     * @param {Object} obj 链接数据
+     * @param {String} text 链接文本
+     * @return {String} 返回拼装好的html
      */
     function dataFormatForA (obj, text) {
         // 格式后数据
@@ -432,7 +421,6 @@ define(function (require) {
                     + obj[key]
                     + '\''
                 );
-
             }
 
             formatObj = {
@@ -489,13 +477,14 @@ define(function (require) {
     /**
      * 格式化新样式数据
      *
-     * @param {[type]} type 新样式类型
-     * @param {[type]} obj 新样式数据
-     * @return {[type]} 返回拼装好的html
+     * @param {String} type 新样式类型
+     * @param {Object} obj 新样式数据
+     * @return {String} 返回拼装好的html
      */
     function dataForamtForRow (type, obj) {
         var html = '';
-        if(obj) {
+
+        if (obj) {
             // 格式化链接数据
             var aHtml = dataFormatForA(obj.a, baidushenfenrenzheng);
             if (obj.process) { // 进度条小流量判断
@@ -553,9 +542,8 @@ define(function (require) {
     /**
      * 获取元素指定属性的值，并返回json格式
      *
-     * @param {[jQuery]} ele dom元素
-     * @param {[type]} type dom元素的指定属性
-     * @return {[type]} 指定属性值的json对象
+     * @param {jQuery} ele dom元素
+     * @param {String} type dom元素的指定属性
      */
     function getDataFromAttr (ele, type) {
         // 获取元素指定属性的值
@@ -567,13 +555,13 @@ define(function (require) {
     /**
      * v身份新样式html
      *
-     * @param {[type]} json v身份数据
-     * @return {[type]} 返回拼装好的标题html
+     * @param {Object} json v身份数据
+     * @return {String} 返回拼装好的标题html
      */
     function authBodyHtml (json) {
-
         // 医疗 html
         var medical = dataForamtForRow('medical', json.medical);
+
         // 企业加v html
         var identity;
         if (json.identity) {
@@ -615,8 +603,10 @@ define(function (require) {
         else {
             personal = dataForamtForRow('personal', json.personal);
         }
+
         // 航协 html
         var airline = dataForamtForRow('airline', json.airline);
+
         // 药监局 html
         var dfa = dataForamtForRow('dfa', json.dfa);
 
@@ -639,11 +629,13 @@ define(function (require) {
 
     /**
      * 承诺浮层html
+     *
      * @param  {Object} json v身份数据
      * @return {string}      返回拼装好的标题html
      */
     function commitmentBodyHtml (json) {
         var itemHtml = '';
+
         for (var key in json) {
             if (json.hasOwnProperty(key)) {
                 itemHtml += format('commitmentItem', {
@@ -658,35 +650,32 @@ define(function (require) {
         var html = format(
             'commitmentList',
             {
-                commitmentContent : itemHtml
+                commitmentContent: itemHtml
             }
         );
+
         return html;
     }
 
     /**
      * 显示浮层时，发送日志
      *
-     * @param {[type]} logType 日志类型：
+     * @param {String} logType 日志类型：
      * v身份： identity
      */
     function sendLog (logType) {
-
         // 从浮层配置中读取发送日志地址以及发送参数
         var statistics = conf.statistics;
 
-        if (statistics && statistics[logType] && statistics[logType]['url']) {
-
+        if(statistics && statistics[logType] && statistics[logType]['url']) {
             // 若是大搜索页面，需添加 searchId ，如下qid即为 searchId
             var bds = window.bds || {};
             var qid = '';
             if (bds && bds.comm && bds.comm.qid) {
                 qid = bds.comm.qid;
             }
-            /**
-             * 日志约定必选参数有，searchId，当前页面的url，时间戳
-             * @type {Object}
-             */
+
+            // 日志约定必选参数有，searchId，当前页面的url，时间戳
             var query = {
                 qid: qid,
                 url: window.document.location.href,
@@ -709,9 +698,9 @@ define(function (require) {
     /**
      * 检测大搜索页面中bds.se.tip对象
      */
-    function checkTipComponent(opts) {
+    function checkTipComponent (opts) {
         if (!bds || !bds.se || !bds.se.tip) {
-            checkTipComponentTimer = setTimeout(function() {
+            checkTipComponentTimer = setTimeout(function () {
                 checkTipComponent(opts);
             }, 10);
         }
@@ -729,12 +718,13 @@ define(function (require) {
      *
      * @param  {String} tipType  浮层类型
      * @param  {String} attrKey  用于获取dom属性的key
-     * @param  {String?} tipTitle 浮层里面的标题
+     * @param  {?String} tipTitle 浮层里面的标题
      */
     function doShow (tipType, attrKey, tipTitle) {
         if (tipType === 'identity') {
             sendLog(tipType);
         }
+
         var me = this;
         if (!me.alreadyRender) {
             me.op.offset = conf.offset[tipType];
@@ -745,22 +735,28 @@ define(function (require) {
                     $('#ec_im_container').position().left,
                     10
                 );
+
                 var domOffset = parseInt(
                     $triggerEl.position().left,
                     10
                 );
+
                 var sub =
                     Math.abs(rightContainerOffset - domOffset);
+
                 me.op.offset = {
                     x: sub,
                     y: 25
                 };
+
                 me.op.arrow = {
                     has :  1,
                     offset : sub
                 };
             }
+
             var data = getDataFromAttr($triggerEl, attrKey);
+
             if (tipType === 'identity') {
                 var url = $triggerEl.attr('href');
                 if (data.identity) {
@@ -802,7 +798,9 @@ define(function (require) {
                     tipContent = format(tipType, data);
                     me.setTitle(tipTitle);
                 }
+
                 me.setContent(tipContent);
+
                 if (tipType === 'coupon') {
                     var aChildren = me.getDom().find('a');
                     var aList = [];
@@ -819,6 +817,7 @@ define(function (require) {
                             aList.push(aChildren[j]);
                         }
                     }
+
                     if (aList.length) {
                         E.pl.ck(aList, E.pl.imTimesign);
                     }
