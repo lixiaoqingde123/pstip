@@ -1,21 +1,16 @@
 /**
  * @file 大搜索 商业广告 tip
- * @author Wanglei [wanglei23@baidu.com]
+ * 去掉了一些重复的内容
+ * @author Ielgnaw(wuji0223@gmail.com)
  */
 
-define( function(require) {
+define(function (require) {
 
     // 已经通过
     var yijingtonguo = '\u5df2\u7ecf\u901a\u8fc7';
 
-    // 百度信誉星级
-    var baiduxinyuxingji = '\u767e\u5ea6\u4fe1\u8a89\u661f\u7ea7';
-
     // 具有
     var juyou = '\u5177\u6709';
-
-    // 百度身份认证
-    var baidushenfenrenzheng = '\u767e\u5ea6\u8eab\u4efd\u8ba4\u8bc1';
 
     // 百度信誉认证
     var baiduxinyurenzheng = '\u767e\u5ea6\u4fe1\u8a89\u8ba4\u8bc1';
@@ -25,16 +20,6 @@ define( function(require) {
 
     // 咨询电话
     var zixundianhua = '\u54a8\u8be2\u7535\u8bdd';
-
-    /**
-     * 信誉成长值:
-     */
-    var xinyuchengzhangzhi = '\u4fe1\u8a89\u6210\u957f\u503c\u003a\u0020';
-
-    /**
-     * 查看V信誉档案
-     */
-    var chakanvxinyudangan = '\u67e5\u770b\u0056\u4fe1\u8a89\u6863\u6848';
 
     // 国家药监局
     var guojiayaojianju = '\u56fd\u5bb6\u836f\u76d1\u5c40';
@@ -57,8 +42,6 @@ define( function(require) {
     //的机票代理资格
     var dejipiaodalizige = '\u7684\u673a\u7968\u4ee3\u7406\u8d44\u683c';
 
-    var PROCESS_MAX = 100;
-
     var TPL = {
         // a标签 链接模板
         a: ''
@@ -71,18 +54,6 @@ define( function(require) {
             +         '#{text}'
             +     '</a>'
             + '</span>',
-
-        // 查看v信誉档案
-        // checkArchive: ''
-        //     + '<span#{billing}>'
-        //     +     '<a target="_blank"  href="#{url}" onmousedown="return c({'
-        //     +         '\'title\':this.innerHTML,'
-        //     +         '\'url\':this.href'
-        //     +         ',#{options}'
-        //     +         '});">'
-        //     +         '#{text}'
-        //     +     '</a>'
-        //     + '</span>',
 
         // 浮层列表模板
         list : ''
@@ -108,22 +79,6 @@ define( function(require) {
             + yijingtonguo
             +     '#{text}#{a}'
             +'</li>',
-            // + '#{starlevel}',
-
-        // 企业v模板 进度条
-        identityProcess : ''
-            + '<li class="c-tip-item-i">'
-            // +     '<i class="c-customicon c-icon-v#{processLevel}-noborder '
-            // +                 'c-gap-icon-right-small c-tip-item-icon"></i>'
-            + '<img src="http://tag.baidu.com/views/v#{processLevel}.png" '
-            + ' class="c-customicon c-gap-icon-right-small c-tip-item-icon">'
-            + yijingtonguo
-            +     '#{text}#{a}'
-            + '</li>'
-            + '#{process}',
-            // + '<li class="c-tip-item-i">'
-            // +     '#{checkArchive}'
-            // + '</li>',
 
         // 企业v传入自定义图片
         identityImg : ''
@@ -133,20 +88,6 @@ define( function(require) {
             + yijingtonguo
             +     '#{text}#{a}'
             +'</li>',
-            // + '#{starlevel}',
-
-        // 企业v传入自定义图片 进度条
-        identityProcessImg : ''
-            + '<li class="c-tip-item-i">'
-            +     '<img class="c-customicon c-gap-icon-right-small '
-            +                 'c-tip-item-icon" src="#{img}">'
-            + yijingtonguo
-            +     '#{text}#{a}'
-            +'</li>'
-            + '#{process}',
-            // + '<li class="c-tip-item-i">'
-            // +     '#{checkArchive}'
-            // + '</li>',
 
         // 个人v模板
         personal : ''
@@ -156,7 +97,6 @@ define( function(require) {
             + yijingtonguo
             +     '#{text}#{a}'
             +'</li>',
-            // + '#{starlevel}',
 
         // 个人v传入自定义图片
         personalImg : ''
@@ -166,7 +106,6 @@ define( function(require) {
             + yijingtonguo
             +     '#{text}#{a}'
             +'</li>',
-            // + '#{starlevel}',
 
         // 航协模板
         airline : ''
@@ -182,24 +121,6 @@ define( function(require) {
             +     '<img height=16 width=16 class="c-customicon '
             +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
             +     '#{text}'
-            + '</li>',
-
-        // 百度信誉星级模板
-        starlevel : ''
-            + '<li class="c-tip-item-i">'
-            +     baiduxinyuxingji
-            +     '<i class="c-icon c-icon-star-gray">'
-            +         '<i style="width: #{credit}%;" '
-            +               'class="c-icon c-icon-star"></i>'
-            +     '</i>'
-            + '</li>',
-
-        // 信誉度新模板
-        process : ''
-            + '<li class="c-tip-item-i">'
-            +     xinyuchengzhangzhi
-            +     '<i class="EC_process">'
-            +     '</i>'
             + '</li>',
 
         // 惠模板
@@ -252,23 +173,37 @@ define( function(require) {
         // 药监模板
         med : ''
             + '<div class="c-tip-info">'
-            +     juyou
-            +     '<a href=\'http://www.sda.gov.cn/WS01/CL0001/\' '
-            +       ' target="_blank">'
-            +     guojiayaojianju
-            +     '</a>'
-            +     shouquanwangshangyouyaozige
+            +   '<ul>'
+            +       '<li class="c-tip-item-i">'
+            +           '<i class="c-icon c-icon-sfda c-gap-icon-right-small'
+            +               ' c-tip-item-icon"></i>'
+            +           juyou
+            +               '<a href=\'http://www.sda.gov.cn/WS01/CL0001/\' '
+            +                   ' target="_blank">'
+            +                   guojiayaojianju
+            +               '</a>'
+            +           shouquanwangshangyouyaozige
+            +       '</li>'
+            +   '</ul>'
             + '</div>',
 
         // 航空模板
         air : ''
             + '<div class="c-tip-info">'
-            +     juyou
-            +     '<a href=\'http://www.sda.gov.cn/WS01/CL0001/\' '
-            +       ' target="_blank">'
-            +     zhonghangxierenzheng
-            +     '</a>'
-            +     dejipiaodalizige
+            +   '<ul>'
+            +       '<li class="c-tip-item-i">'
+            +           '<img class="c-customicon c-gap-icon-right-small '
+            +               'c-tip-item-icon" '
+            +               'src="http://bs.baidu.com/chuangxin/n2_jp_bg.gif">'
+            // +           '<i class="c-icon c-icon-sfda c-gap-icon-right-small c-tip-item-icon"></i>'
+            +           juyou
+            +           '<a href=\'http://www.cata.org.cn/\' '
+            +               ' target="_blank">'
+            +               zhonghangxierenzheng
+            +           '</a>'
+            +           dejipiaodalizige
+             +       '</li>'
+            +   '</ul>'
             + '</div>'
     };
 
@@ -307,7 +242,7 @@ define( function(require) {
      *
      * @param  {String} source 需要转义的字符串
      */
-    function escapeSymbol (source) {
+    function escapeSymbol(source) {
         return String(source).replace(
             /[#%&+=\/\\\ \　\f\r\n\t]/g,
             function(all) {
@@ -322,6 +257,27 @@ define( function(require) {
     }
 
     /**
+     * 类ES5 Function.bind 的实现
+     *
+     * @param  {Function} fn      要执行的函数
+     * @param  {Object}   context 上下文对象(this)
+     */
+    function bind(fn, context) {
+        if (arguments.length < 2 && context === undefined) {
+            return fn;
+        }
+
+        var _method = fn;
+        var _slice = Array.prototype.slice;
+        var args = _slice.call(arguments, 2);
+
+        return function () {
+            var array = _slice.call(arguments, 0);
+            _method.apply(context, args.concat(array));
+        };
+    }
+
+    /**
      * 将json对象解析成query字符串
      * from tangram
      *
@@ -329,7 +285,7 @@ define( function(require) {
      * @param  {?Function} replacerOpt 对值进行特殊处理的函数，
      *                                     function (value, key)
      */
-    function jsonToQuery (json, replacerOpt) {
+    function jsonToQuery(json, replacerOpt) {
         var result = [];
         var itemLen;
         var replacer = replacerOpt || function (value) {
@@ -360,7 +316,7 @@ define( function(require) {
      * @param  {String} source 目标字符串
      * @param  {Object|String} opts   提供相应数据的对象或多个字符串
      */
-    function bFormat (source, opts) {
+    function bFormat(source, opts) {
         source = String(source);
         var data = Array.prototype.slice.call(arguments,1);
         var toString = Object.prototype.toString;
@@ -396,29 +352,22 @@ define( function(require) {
     }
 
     /**
-     * 类ES5 Function.bind 的实现
-     *
-     * @param  {Function} fn      要执行的函数
-     * @param  {Object}   context 上下文对象(this)
+     * from baidu.json.parse
      */
-    function bind (fn, context) {
-        if (arguments.length < 2 && context === undefined) {
-            return fn;
-        }
-
-        var _method = fn;
-        var _slice = Array.prototype.slice;
-        var args = _slice.call(arguments, 2);
-
-        return function () {
-            var array = _slice.call(arguments, 0);
-            _method.apply(context, args.concat(array));
-        };
+    function parseJson (data) {
+        return (new Function('return (' + data + ')'))();
     }
 
+    /**
+     * 发送日志地址
+     *
+     * @type {String}
+     */
     var sendLogUrl = '';
 
-    // 发日志方法，摘自zxui
+    /**
+     * 发送日志方法，摘自zxui
+     */
     var send = (function () {
         var list = [];
         var encode = function (value) {
@@ -437,6 +386,42 @@ define( function(require) {
             list[index].src = url;
         };
     })();
+
+    /**
+     * 显示浮层时，发送日志
+     *
+     * @param {String} logType 日志类型：
+     * v身份： identity
+     */
+    function sendLog(logType) {
+        // 从浮层配置中读取发送日志地址以及发送参数
+        var statistics = conf.statistics;
+
+        if(statistics && statistics[logType] && statistics[logType]['url']) {
+            // 若是大搜索页面，需添加 searchId ，如下qid即为 searchId
+            var bds = window.bds || {};
+            var qid = '';
+            if (bds && bds.comm && bds.comm.qid) {
+                qid = bds.comm.qid;
+            }
+
+            // 日志约定必选参数有，searchId，当前页面的url，时间戳
+            var query = {
+                qid: qid,
+                url: window.document.location.href,
+                timestamp: +new Date()
+            };
+
+            // 获取发送日志地址
+            sendLogUrl = statistics[logType]['url'];
+
+            // 合并对应日志类型的下可选参数
+            $.extend(query, statistics[logType]['query'] || {});
+
+            // 发送日志
+            send(query);
+        }
+    }
 
     // 根据数据，渲染模板
     function format (type, obj) {
@@ -490,40 +475,6 @@ define( function(require) {
 
             html = format('a', formatObj);
 
-            /*if (text === chakanvxinyudangan) {
-                var clsName = '';
-
-                if (obj.billing) {
-                    clsName = '"EC_PP EC_check_archive"';
-                }
-                else {
-                    clsName = '"EC_check_archive"';
-                }
-                formatObj = {
-                    // 若需要计费，则给外层span增加class为EC_PP
-                    billing: ' class=' + clsName,
-                    // 链接的url
-                    url: obj.url,
-                    // 链接的文本
-                    text: obj.text || text,
-                    // 链接中自定义的属性数据
-                    options: optionArray.join(',')
-                };
-                html = format('checkArchive', formatObj);
-            }
-            else {
-                formatObj = {
-                    // 若需要计费，则给外层span增加class为EC_PP
-                    billing: obj.billing && ' class="EC_PP"',
-                    // 链接的url
-                    url: obj.url,
-                    // 链接的文本
-                    text: obj.text || text,
-                    // 链接中自定义的属性数据
-                    options: optionArray.join(',')
-                };
-                html = format('a', formatObj);
-            }*/
         }
         return html;
     }
@@ -537,61 +488,17 @@ define( function(require) {
      */
     function dataForamtForRow (type, obj) {
         var html = '';
-
         if (obj) {
             // 格式化链接数据
-            // var aHtml = dataFormatForA(obj.a, baidushenfenrenzheng);
             var aHtml = dataFormatForA(obj.a, baiduxinyurenzheng);
-            if (obj.process) { // 进度条小流量判断
-
-                // 右下角 查看v信誉档案 链接数据
-                // var checkArchiveContent = dataFormatForA(
-                //     obj.a,
-                //     chakanvxinyudangan
-                // );
-                var processLevel;
-                var level = parseInt(obj.process, 10);
-                if (level >= 0 && level <= 40) {
-                    processLevel = 1;
-                }
-                else if (level >= 41 && level <= 90) {
-                    processLevel = 2;
-                }
-                else {
-                    processLevel = 3;
-                }
-                // var process = format('process');
-                html = format(type, {
-                    text: obj.text,
-                    a: aHtml,
-                    // process: process,
-                    img: obj.img
-                    // , processLevel: processLevel
-                    // ,checkArchive: checkArchiveContent
-                });
-            }
-            else {
-                // 格式化信誉等级数据
-                // var starlevel = format('starlevel', {
-                //     credit: parseInt(obj.credit, 10) * 20
-                // });
-                html = format(type, {
-                    text: obj.text,
-                    a: aHtml,
-                    // starlevel: starlevel,
-                    img: obj.img
-                });
-            }
+            html = format(type, {
+                text: obj.text,
+                a: aHtml,
+                img: obj.img
+            });
         }
         // 返回拼装好的html
         return html;
-    }
-
-    /**
-     * from baidu.json.parse
-     */
-    function parseJson (data) {
-        return (new Function('return (' + data + ')'))();
     }
 
     /**
@@ -621,32 +528,16 @@ define( function(require) {
         var identity;
         if (json.identity) {
             if (json.identity.img) {
-                // if (json.identity.process) {
-                //     identity = dataForamtForRow(
-                //         'identityProcessImg',
-                //         json.identity
-                //     );
-                // }
-                // else {
-                    identity = dataForamtForRow(
-                        'identityImg',
-                        json.identity
-                    );
-                // }
+                identity = dataForamtForRow(
+                    'identityImg',
+                    json.identity
+                );
             }
             else {
-                // if (json.identity.process) {
-                //     identity = dataForamtForRow(
-                //         'identityProcess',
-                //         json.identity
-                //     );
-                // }
-                // else {
-                    identity = dataForamtForRow(
-                        'identity',
-                        json.identity
-                    );
-                // }
+                identity = dataForamtForRow(
+                    'identity',
+                    json.identity
+                );
             }
         }
 
@@ -713,46 +604,9 @@ define( function(require) {
     }
 
     /**
-     * 显示浮层时，发送日志
-     *
-     * @param {String} logType 日志类型：
-     * v身份： identity
-     */
-    function sendLog (logType) {
-        // 从浮层配置中读取发送日志地址以及发送参数
-        var statistics = conf.statistics;
-
-        if(statistics && statistics[logType] && statistics[logType]['url']) {
-            // 若是大搜索页面，需添加 searchId ，如下qid即为 searchId
-            var bds = window.bds || {};
-            var qid = '';
-            if (bds && bds.comm && bds.comm.qid) {
-                qid = bds.comm.qid;
-            }
-
-            // 日志约定必选参数有，searchId，当前页面的url，时间戳
-            var query = {
-                qid: qid,
-                url: window.document.location.href,
-                timestamp: +new Date()
-            };
-
-            // 获取发送日志地址
-            sendLogUrl = statistics[logType]['url'];
-
-            // 合并对应日志类型的下可选参数
-            $.extend(query, statistics[logType]['query'] || {});
-
-            // 发送日志
-            send(query);
-        }
-    }
-
-    var checkTipComponentTimer;
-
-    /**
      * 检测大搜索页面中bds.se.tip对象
      */
+    var checkTipComponentTimer;
     function checkTipComponent (opts) {
         if (!bds || !bds.se || !bds.se.tip) {
             checkTipComponentTimer = setTimeout(function () {
@@ -766,6 +620,7 @@ define( function(require) {
             renderTip('tel', opts);
             renderTip('commitment', opts);
             renderTip('med', opts);
+            renderTip('air', opts);
         }
     }
 
@@ -832,18 +687,6 @@ define( function(require) {
                 var tipContent = authBodyHtml(data);
                 me.setTitle(data.title);
                 me.setContent(tipContent);
-                // if (data[tipType] && data[tipType].process) {
-                //     A.use(
-                //         'ecomprogress',
-                //         function () {
-                //             A.ui.ecomprogress(
-                //                 me.getDom().find('i.EC_process')[0],
-                //                 data[tipType].process,
-                //                 PROCESS_MAX
-                //             );
-                //         }
-                //     );
-                // }
             }
             else {
                 var tipContent;
@@ -973,7 +816,7 @@ define( function(require) {
      */
     function init(opts) {
         $(document).ready(function () {
-            $.extend(conf, opts || {});
+            $.extend(true, conf, opts || {});
             checkTipComponent(conf);
         });
     }
