@@ -61,7 +61,9 @@ define(function (require) {
         list : ''
             + '<div class="c-tip-info">'
             +     '<ul>'
-            +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
+            // +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
+            +         '#{credit}#{medical}#{airline}#{dfa}'
+            +         '#{identity}#{personal}'
             +     '</ul>'
             + '</div>',
 
@@ -90,6 +92,12 @@ define(function (require) {
             + yijingtonguo
             +     '#{text}#{a}'
             +'</li>',
+
+        // 信誉v
+        credit: ''
+            + '<li class="c-tip-item-i">'
+            +     '郭勇组件的占位符'
+            + '</li>',
 
         // 个人v模板
         personal : ''
@@ -205,9 +213,10 @@ define(function (require) {
             +               zhonghangxierenzheng
             +           '</a>'
             +           dejipiaodalizige
-             +       '</li>'
+            +       '</li>'
             +   '</ul>'
             + '</div>'
+
     };
 
     /**
@@ -363,40 +372,40 @@ define(function (require) {
      * @param  {String} source 目标字符串
      * @param  {Object|String} opts   提供相应数据的对象或多个字符串
      */
-    function bFormat(source, opts) {
-        source = String(source);
-        var data = Array.prototype.slice.call(arguments,1);
-        var toString = Object.prototype.toString;
-        if(data.length){
-            data =
-                data.length == 1
-                    ?
-            // ie 下 Object.prototype.toString.call(null) == '[object Object]'
-                    (
-                        opts !== null
-                            && (/\[object Array\]|\[object Object\]/
-                                    .test(toString.call(opts)))
-                        ?
-                        opts
-                        :
-                        data
-                    )
-                    :
-                    data;
-            return source.replace(
-                /#\{(.+?)\}/g,
-                function (match, key) {
-                    var replacer = data[key];
-                    // chrome 下 typeof /a/ == 'function'
-                    if ('[object Function]' == toString.call(replacer)) {
-                        replacer = replacer(key);
-                    }
-                    return ('undefined' == typeof replacer ? '' : replacer);
-                }
-            );
-        }
-        return source;
-    }
+    // function bFormat(source, opts) {
+    //     source = String(source);
+    //     var data = Array.prototype.slice.call(arguments,1);
+    //     var toString = Object.prototype.toString;
+    //     if(data.length){
+    //         data =
+    //             data.length == 1
+    //                 ?
+    //         // ie 下 Object.prototype.toString.call(null) == '[object Object]'
+    //                 (
+    //                     opts !== null
+    //                         && (/\[object Array\]|\[object Object\]/
+    //                                 .test(toString.call(opts)))
+    //                     ?
+    //                     opts
+    //                     :
+    //                     data
+    //                 )
+    //                 :
+    //                 data;
+    //         return source.replace(
+    //             /#\{(.+?)\}/g,
+    //             function (match, key) {
+    //                 var replacer = data[key];
+    //                 // chrome 下 typeof /a/ == 'function'
+    //                 if ('[object Function]' == toString.call(replacer)) {
+    //                     replacer = replacer(key);
+    //                 }
+    //                 return ('undefined' == typeof replacer ? '' : replacer);
+    //             }
+    //         );
+    //     }
+    //     return source;
+    // }
 
     /**
      * from baidu.json.parse
@@ -473,7 +482,8 @@ define(function (require) {
     // 根据数据，渲染模板
     function format(type, obj) {
         obj = obj || {};
-        return bFormat(TPL[type], obj);
+        // return bFormat(TPL[type], obj);
+        return $.format(TPL[type], obj);
     }
 
     /**
@@ -588,6 +598,9 @@ define(function (require) {
             }
         }
 
+        // 信誉v，用的是 identity 的数据
+        var credit = dataForamtForRow('credit', json.identity);
+
         // 个人加v html
         var personal;
         if (json.personal && json.personal.img) {
@@ -608,7 +621,8 @@ define(function (require) {
             'list',
             {
                 medical: medical,
-                identity: identity,
+                // identity: identity,
+                credit: credit,
                 airline: airline,
                 dfa: dfa,
                 personal: personal
