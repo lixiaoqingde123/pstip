@@ -95,8 +95,8 @@ define(function (require) {
 
         // 信誉v
         credit: ''
-            + '<li class="c-tip-item-i">'
-            +     '郭勇组件的占位符'
+            + '<li class="EC-credit" >'
+            // +     '郭勇组件的占位符'
             + '</li>',
 
         // 个人v模板
@@ -820,9 +820,20 @@ define(function (require) {
                 default:
                     tipContent = format(tipType, data);
                     tipTitle && me.setTitle(tipTitle);
-                    // break;
             }
             me.setContent(tipContent);
+
+            // 只有setContent后tip.getDom才会取到设置进去的content
+            if (tipType === 'identity') {
+                if (data[tipType] && data[tipType].process) {
+                    initHonourCard(
+                        me.getDom().find('.EC-credit')[0],
+                        data[tipType].process,
+                        data[tipType].a.url
+                    );
+                }
+            }
+
             me.alreadyRender = true;
         }
     }
@@ -850,9 +861,85 @@ define(function (require) {
      */
     function init(opts) {
         $(document).ready(function () {
+            // 郭勇组件线下测试
+            var cssUrl = ''
+                + 'http://1.wlstatic.newoffline.bae.baidu.com/lib/'
+                + 'ecom/common/api/honourCard/honourCard.css';
+
+            loadCss(cssUrl);
+
             $.extend(true, conf, opts || {});
             checkTipComponent();
         });
+    }
+
+    /**
+     * 初始化郭勇的组件
+     *
+     * @param  {HTMLElement} dom   父容器
+     * @param  {Number} value 信誉的分数
+     * @param  {String} url   中间页地址
+     */
+    function initHonourCard(dom, value, url) {
+        var $dom = $(dom);
+        $dom.html(''
+            + '<div class="opui-honourCard">'
+            +   '<div class="opui-honourCard-title">已通过 '
+            +       '<a class="c-gap-left-small" target="_blank">'
+            +           '百度信誉<i class="c-icon c-icon-v"></i>等级评定'
+            +       '</a>'
+            +   '</div>'
+            +   '<div class="opui-honourCard-info">'
+            +       '<span class="opui-honourCard-score">'
+            +           '<em></em>成长值'
+            +       '</span>'
+            +       '<ol>'
+            +           '<li>一级（0 -40）：基础信誉积累，可放心访问</li>'
+            +           '<li>二级（41-90）：良好信誉积累，可安心交易</li>'
+            +           '<li>'
+            +               '三级（90+&nbsp;&nbsp;）：充分信誉积累，可持续信赖'
+            +           '</li>'
+            +       '</ol>'
+            +   '</div>'
+            + '</div>'
+        );
+
+        if (url) {
+            $dom.find('.opui-honourCard-title a').attr('href',url);
+        }
+
+        if (value >= 0) {
+            $dom.find('.opui-honourCard-score em').html(value);
+            if (value <= 40) {
+
+            }
+            else if (value <= 90) {
+
+            }
+            else if (value <= 100) {
+
+            }
+            else {
+                $dom.find('.opui-honourCard-score').hide();
+            }
+        }
+        else {
+            $dom.find('.opui-honourCard-score').hide();
+        }
+    }
+
+    function loadCss(url) {
+        var link = document.createElement('link');
+        link.setAttribute('rel', 'stylesheet');
+        link.setAttribute('type', 'text/css');
+        link.setAttribute('href', url);
+
+        var parent = document.getElementsByTagName('head')[0] ||
+            document.body;
+        parent.appendChild(link);
+
+        parent = null;
+        link = null;
     }
 
     return {
