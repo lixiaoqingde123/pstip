@@ -62,7 +62,7 @@ define(function (require) {
             + '<div class="c-tip-cer">'
             +     '<ul>'
             // +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
-            +         '#{credit}#{medical}#{airline}#{dfa}'
+            +         '#{credit}#{medical}#{dfa}#{airline}'
             +         '#{identity}#{personal}'
             +     '</ul>'
             + '</div>',
@@ -743,6 +743,15 @@ define(function (require) {
             var triggerEl = me.getTarget();
             var $triggerEl = $(triggerEl);
 
+            var triggerElWidth = $triggerEl.width();
+            if (isNaN(triggerElWidth)) {
+                triggerElWidth = 0;
+            }
+
+            if (triggerElWidth > 20) {
+                me.op.arrow.offset = triggerElWidth / 2;
+            }
+
             // 右侧im的浮层居左对齐
             if ($triggerEl.attr('data-tip-limite')) {
                 // 参照的dom
@@ -781,10 +790,12 @@ define(function (require) {
 
                 me.op.arrow = {
                     has :  1,
-                    offset : sub
+                    // offset : sub
+                    offset : triggerElWidth > 20
+                                ? sub + triggerElWidth / 3
+                                : sub
                 };
 
-                // $(me.getDom()[0]).width(TIPWIDTH);
             }
 
             // 浮层的内容
@@ -903,91 +914,9 @@ define(function (require) {
      */
     function init(opts) {
         $(document).ready(function () {
-            // 郭勇组件线下测试
-            // var cssUrl = ''
-            //     + 'http://1.wlstatic.newoffline.bae.baidu.com/lib/'
-            //     + 'ecom/common/api/honourCard/honourCard.css';
-
-            // loadCss(cssUrl);
-
             $.extend(true, conf, opts || {});
             checkTipComponent();
         });
-    }
-
-    /**
-     * 初始化郭勇的组件
-     *
-     * @param  {HTMLElement} dom   父容器
-     * @param  {Number} value 信誉的分数
-     * @param  {String} url   中间页地址
-     */
-    function initHonourCard(dom, value, url) {
-        var value = value>=0?value:-1;
-        var $dom = $(dom);
-        $dom.html(''
-            + '<div class="opui-honourCard">'
-            +   '<div class="opui-honourCard-title">已通过 '
-            +       '<a class="c-gap-left-small" target="_blank">'
-            +           '百度信誉<i class="c-icon c-icon-v"></i>等级评定'
-            +       '</a>'
-            +   '</div>'
-            +   '<div class="opui-honourCard-info">'
-            +       '<span class="opui-honourCard-score">'
-            +           '<em></em>成长值'
-            +       '</span>'
-            +       '<ol>'
-            +           '<li><i class="c-icon c-icon-v1-noborder-disable"></i><span>（0 -40）</span>：基础信誉积累，可放心访问</li>'
-            +           '<li><i class="c-icon c-icon-v2-noborder-disable"></i><span>（41-90）</span>：良好信誉积累，可安心交易</li>'
-            +           '<li><i class="c-icon c-icon-v3-noborder-disable"></i><span>（90+&nbsp;&nbsp;）</span>：充分信誉积累，可持续信赖</li>'
-            +       '</ol>'
-            +   '</div>'
-            + '</div>'
-        );
-
-        if (url) {
-            $dom.find(".opui-honourCard-title a").attr("href",url);
-        }
-        if(value >= 0){
-            $dom.find(".opui-honourCard-score em").html(value);
-            if(value <=40){
-                $($dom.find(".opui-honourCard-info li")[0]).addClass("opui-honourCard-selected");
-                $dom.find("c-icon-v1-noborder-disable").addClass("c-icon-v1-noborder").removeClass("c-icon-v1-noborder-disable");
-
-            }
-            else if(value <=90){
-                $($dom.find(".opui-honourCard-info li")[1]).addClass("opui-honourCard-selected");
-                $dom.find("c-icon-v2-noborder-disable").addClass("c-icon-v2-noborder").removeClass("c-icon-v2-noborder-disable");
-            }
-            else if(value <=100){
-                $($dom.find(".opui-honourCard-info li")[2]).addClass("opui-honourCard-selected");
-                $dom.find("c-icon-v3-noborder-disable").addClass("c-icon-v3-noborder").removeClass("c-icon-v3-noborder-disable");
-            }
-            else{
-                $dom.find(".opui-honourCard-score").hide();
-                $dom.find(".opui-honourCard-info li span").hide();
-            }
-        }else{
-            $dom.find(".opui-honourCard-score").hide();
-            $dom.find(".opui-honourCard-info li span").hide();
-        }
-
-    }
-
-
-
-    function loadCss(url) {
-        var link = document.createElement('link');
-        link.setAttribute('rel', 'stylesheet');
-        link.setAttribute('type', 'text/css');
-        link.setAttribute('href', url);
-
-        var parent = document.getElementsByTagName('head')[0] ||
-            document.body;
-        parent.appendChild(link);
-
-        parent = null;
-        link = null;
     }
 
     return {
