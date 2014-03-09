@@ -58,8 +58,7 @@ define(function (require) {
             + '<div class="c-tip-cer">'
             +     '<ul>'
             // +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
-            +         '#{credit}#{medical}#{dfa}#{airline}'
-            +         '#{identity}#{personal}'
+            +         '#{credit}'
             +     '</ul>'
             + '</div>',
 
