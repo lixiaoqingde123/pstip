@@ -48,11 +48,7 @@ define(function (require) {
         // a标签 链接模板
         a: ''
             + '<span#{billing}>'
-            +     '<a target="_blank"  href="#{url}" onmousedown="return c({'
-            +         '\'title\':this.innerHTML,'
-            +         '\'url\':this.href'
-            +         ',#{options}'
-            +         '});">'
+            +     '<a target="_blank"  href="#{url}">'
             +         '#{text}'
             +     '</a>'
             + '</span>',
@@ -145,15 +141,7 @@ define(function (require) {
         // 惠模板
         coupon : ''
             + '<div class="c-tip-info EC_PP">'
-            +     '<a target="_blank" href="#{url}" class="coupon-ck" '
-            +       'onmousedown="return c({'
-            +         '\'title\':this.innerHTML,'
-            +         '\'url\':this.href,'
-            +         '\'fm\':\'#{fm}\','
-            +         '\'rsv_ct\':\'#{rsv_ct}\','
-            +         '\'p1\':#{p1},'
-            +         '\'p2\':#{p2}'
-            +         '});">'
+            +     '<a target="_blank" href="#{url}" class="coupon-ck">'
             +         '#{text}'
             +     '</a>'
             + '</div>',
@@ -178,12 +166,7 @@ define(function (require) {
             +          '<i class="c-icon c-icon-circle-blue-s '
             +               'ec-vertical-baseline c-gap-icon-right-small '
             +                   'c-tip-item-icon"></i>'
-            +          '<a href=#{url} target="_blank" onmousedown="return c({'
-            +               '\'title\': this.innerHTML,'
-            +               '\'url\': this.href,'
-            +               '\'fm\': \'#{fm}\','
-            +               '\'p1\': \'#{p1}\''
-            +               '});">'
+            +          '<a href=#{url} target="_blank">'
             +             '#{text}'
             +          '</a>'
             +      '</span>'
@@ -710,11 +693,11 @@ define(function (require) {
             else {
                 // 筛选商业结果
                 if (
-                    $el.parents('.EC_ppim_top').length
+                    $el.parents('.EC_list').length
                     ||
-                    $el.parents('.EC_im').length
+                    $el.parents('.EC_im_fold').length
                     ||
-                    $el.parents('.ec_pp_top').length
+                    $el.parents('.ec_pp_f').length
                 ) {
                     var tip = new bds.se.tip({
                         target: $el[0]
@@ -756,7 +739,7 @@ define(function (require) {
             if ($triggerEl.attr('data-tip-limite')) {
                 // 参照的dom
                 // 以每个v标的父`.EC_im`节点作为参照
-                var referenceDom = $triggerEl.parents('.EC_im');
+                var referenceDom = $triggerEl.parents('.EC_im_fold');
 
                 // 参照dom的left
                 var referenceLeft =
