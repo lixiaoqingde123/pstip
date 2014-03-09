@@ -1,6 +1,6 @@
 /**
  * @file 大搜索 商业广告 tip，信誉v
- * @author Ielgnaw(wuji0223@gmail.com)
+ * @author Ielgnaw(wuji0223@gmail.com) 
  */
 
 define(function (require) {
