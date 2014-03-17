@@ -50,21 +50,21 @@ define(function (require) {
             +     '<ul>'
             // +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
             // +         '#{credit}#{medical}#{dfa}#{airline}'
-            +         '#{credit}#{medical}'
+            +         '#{credit}'
             +         '#{identity}#{personal}'
             +     '</ul>'
             + '</div>',
 
         // 医疗模板
-        medical : ''
-            // + '<li class="c-tip-item-i">'
-            // +     '<i class="c-icon c-icon-right '
-            // +                'c-gap-icon-right-small c-tip-item-icon"></i>'
-            // +     '<span>#{text}</span>'
-            // + '</li>',
-            + '<li>'
-            +     '<span>#{text}</span>'
-            + '</li>',
+        // medical : ''
+        //     // + '<li class="c-tip-item-i">'
+        //     // +     '<i class="c-icon c-icon-right '
+        //     // +                'c-gap-icon-right-small c-tip-item-icon"></i>'
+        //     // +     '<span>#{text}</span>'
+        //     // + '</li>',
+        //     + '<li>'
+        //     +     '<span>#{text}</span>'
+        //     + '</li>',
 
         // 企业v模板
         identity : ''
@@ -525,7 +525,7 @@ define(function (require) {
      */
     function authBodyHtml(json) {
         // 医疗 html
-        var medical = dataForamtForRow('medical', json.medical);
+        // var medical = dataForamtForRow('medical', json.medical);
 
         // 企业加v html
         var identity;
@@ -566,7 +566,7 @@ define(function (require) {
         var list = format(
             'list',
             {
-                medical: medical,
+                // medical: medical,
                 // identity: identity,
                 credit: credit,
                 // airline: airline,
