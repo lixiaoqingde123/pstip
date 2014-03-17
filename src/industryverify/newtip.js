@@ -49,7 +49,8 @@ define(function (require) {
             + '<div class="c-tip-cer">'
             +     '<ul>'
             // +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
-            +         '#{credit}#{medical}#{dfa}#{airline}'
+            // +         '#{credit}#{medical}#{dfa}#{airline}'
+            +         '#{credit}#{medical}'
             +         '#{identity}#{personal}'
             +     '</ul>'
             + '</div>',
@@ -108,26 +109,26 @@ define(function (require) {
             +'</li>',
 
         // 航协模板
-        airline : ''
-            // + '<li class="c-tip-item-i">'
-            // +     '<img height=16 width=16 class="c-customicon '
-            // +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
-            // + juyou
-            // + '#{a}的#{text}</li>',
-            + '<li>'
-            + juyou
-            + '#{a}的#{text}</li>',
+        // airline : ''
+        //     // + '<li class="c-tip-item-i">'
+        //     // +     '<img height=16 width=16 class="c-customicon '
+        //     // +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
+        //     // + juyou
+        //     // + '#{a}的#{text}</li>',
+        //     + '<li>'
+        //     + juyou
+        //     + '#{a}的#{text}</li>',
 
         // 药监局模板
-        dfa : ''
-            // + '<li class="c-tip-item-i">'
-            // +     '<img height=16 width=16 class="c-customicon '
-            // +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
-            // +     '#{text}'
-            // + '</li>',
-            + '<li>'
-            +     '#{text}'
-            + '</li>',
+        // dfa : ''
+        //     // + '<li class="c-tip-item-i">'
+        //     // +     '<img height=16 width=16 class="c-customicon '
+        //     // +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
+        //     // +     '#{text}'
+        //     // + '</li>',
+        //     + '<li>'
+        //     +     '#{text}'
+        //     + '</li>',
 
         // 惠模板
         coupon : ''
@@ -555,11 +556,11 @@ define(function (require) {
             personal = dataForamtForRow('personal', json.personal);
         }
 
-        // 航协 html
-        var airline = dataForamtForRow('airline', json.airline);
+        // // 航协 html
+        // var airline = dataForamtForRow('airline', json.airline);
 
-        // 药监局 html
-        var dfa = dataForamtForRow('dfa', json.dfa);
+        // // 药监局 html
+        // var dfa = dataForamtForRow('dfa', json.dfa);
 
         // 所有新样式，有则显示，没有不显示
         var list = format(
@@ -568,8 +569,8 @@ define(function (require) {
                 medical: medical,
                 // identity: identity,
                 credit: credit,
-                airline: airline,
-                dfa: dfa,
+                // airline: airline,
+                // dfa: dfa,
                 personal: personal
             }
         );
