@@ -1,6 +1,5 @@
 /**
- * @file 大搜索 商业广告 tip
- * 去掉了一些重复的内容
+ * @file 大搜索 商业广告 tip，信誉v
  * @author Ielgnaw(wuji0223@gmail.com)
  */
 
@@ -21,27 +20,17 @@ define(function (require) {
     // 咨询电话
     var zixundianhua = '\u54a8\u8be2\u7535\u8bdd';
 
-    // 国家药监局
-    var guojiayaojianju = '\u56fd\u5bb6\u836f\u76d1\u5c40';
-
-    // 授权的网上售药资格
-    var shouquanwangshangyouyaozige =
-        '\u6388\u6743\u7684\u7f51\u4e0a\u552e\u836f\u8d44\u683c';
-
     // 正规药品销售网站
     var zhengguiyaopinxiaoshouwangzhan =
         '\u6b63\u89c4\u836f\u54c1\u9500\u552e\u7f51\u7ad9\uff1a';
-
-    //中航协认证
-    var zhonghangxierenzheng = '\u4e2d\u822a\u534f\u8ba4\u8bc1';
 
     //正规网上售票网站
     var zhengguiwangshangxiaoshouwangzhan =
         '\u6b63\u89c4\u7f51\u4e0a\u552e\u7968\u7f51\u7ad9\uff1a';
 
-    //的机票代理资格
-    var dejipiaodalizige = '\u7684\u673a\u7968\u4ee3\u7406\u8d44\u683c';
-
+    /**
+     * 浮层内容模板
+     */
     var TPL = {
         // a标签 链接模板
         a: ''
@@ -57,17 +46,22 @@ define(function (require) {
 
         // 浮层列表模板
         list : ''
-            + '<div class="c-tip-info">'
+            + '<div class="c-tip-cer">'
             +     '<ul>'
-            +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
+            // +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
+            +         '#{credit}#{medical}#{dfa}#{airline}'
+            +         '#{identity}#{personal}'
             +     '</ul>'
             + '</div>',
 
         // 医疗模板
         medical : ''
-            + '<li class="c-tip-item-i">'
-            +     '<i class="c-icon c-icon-right '
-            +                'c-gap-icon-right-small c-tip-item-icon"></i>'
+            // + '<li class="c-tip-item-i">'
+            // +     '<i class="c-icon c-icon-right '
+            // +                'c-gap-icon-right-small c-tip-item-icon"></i>'
+            // +     '<span>#{text}</span>'
+            // + '</li>',
+            + '<li>'
             +     '<span>#{text}</span>'
             + '</li>',
 
@@ -89,6 +83,12 @@ define(function (require) {
             +     '#{text}#{a}'
             +'</li>',
 
+        // 信誉v
+        credit: ''
+            + '<li class="EC-credit">'
+            // +     '郭勇组件的占位符'
+            + '</li>',
+
         // 个人v模板
         personal : ''
             + '<li class="c-tip-item-i">'
@@ -109,17 +109,23 @@ define(function (require) {
 
         // 航协模板
         airline : ''
-            + '<li class="c-tip-item-i">'
-            +     '<img height=16 width=16 class="c-customicon '
-            +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
+            // + '<li class="c-tip-item-i">'
+            // +     '<img height=16 width=16 class="c-customicon '
+            // +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
+            // + juyou
+            // + '#{a}的#{text}</li>',
+            + '<li>'
             + juyou
             + '#{a}的#{text}</li>',
 
         // 药监局模板
         dfa : ''
-            + '<li class="c-tip-item-i">'
-            +     '<img height=16 width=16 class="c-customicon '
-            +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
+            // + '<li class="c-tip-item-i">'
+            // +     '<img height=16 width=16 class="c-customicon '
+            // +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
+            // +     '#{text}'
+            // + '</li>',
+            + '<li>'
             +     '#{text}'
             + '</li>',
 
@@ -175,14 +181,10 @@ define(function (require) {
             + '<div class="c-tip-info">'
             +   '<ul>'
             +       '<li class="c-tip-item-i">'
-            +           '<i class="c-icon c-icon-sfda c-gap-icon-right-small'
-            +               ' c-tip-item-icon"></i>'
-            +           juyou
-            +               '<a href=\'http://www.sda.gov.cn/WS01/CL0001/\' '
-            +                   ' target="_blank">'
-            +                   guojiayaojianju
-            +               '</a>'
-            +           shouquanwangshangyouyaozige
+            +           '<img class="c-customicon c-gap-icon-right-small '
+            +               'c-tip-item-icon" '
+            +               'src="#{img}">'
+            +           '#{content}'
             +       '</li>'
             +   '</ul>'
             + '</div>',
@@ -194,19 +196,16 @@ define(function (require) {
             +       '<li class="c-tip-item-i">'
             +           '<img class="c-customicon c-gap-icon-right-small '
             +               'c-tip-item-icon" '
-            +               'src="http://bs.baidu.com/chuangxin/n2_jp_bg.gif">'
-            // +           '<i class="c-icon c-icon-sfda c-gap-icon-right-small c-tip-item-icon"></i>'
-            +           juyou
-            +           '<a href=\'http://www.cata.org.cn/\' '
-            +               ' target="_blank">'
-            +               zhonghangxierenzheng
-            +           '</a>'
-            +           dejipiaodalizige
-             +       '</li>'
+            +               'src="#{img}">'
+            +           '#{content}'
+            +       '</li>'
             +   '</ul>'
             + '</div>'
     };
 
+    /**
+     * 各种类型的浮层的偏移配置等等
+     */
     var conf = {
         offset: {
             identity: {
@@ -233,6 +232,50 @@ define(function (require) {
                 x: 10,
                 y: 25
             }
+        }
+    };
+
+    // 浮层的宽度
+    var TIPWIDTH = 374;
+
+    /**
+     * ps页面上需要出的浮层类型的配置
+     * @property {Array} clsList   该类型的tip的class集合
+     * @property {String} attrKey   该类型的tip获取数据的dom的属性名
+     * @property {?String} tipTitle   该类型的tip的标题
+     */
+    var tipTypeConf = {
+        // 认证
+        identity: {
+            clsList: ['c-icon-v', 'c-icon-high-v', 'c-icon-person'],
+            attrKey: 'data-renzheng'
+        },
+        // 惠
+        coupon: {
+            clsList: ['c-icon-hui', 'asdsa'],
+            attrKey: 'data-coupon',
+            tipTitle: youhuixiangqing + '：'
+        },
+        // 电话
+        tel: {
+            clsList: ['c-icon-phone'],
+            attrKey: 'data-phone',
+            tipTitle: zixundianhua + '：'
+        },
+        // 承诺
+        commitment: {
+            clsList: ['c-icon-nuo'],
+            attrKey: 'data-commitment'
+        },
+        // 药监
+        med: {
+            clsList: ['c-icon-med'],
+            attrKey: 'data-med'
+        },
+        // 航协
+        air: {
+            clsList: ['c-icon-air'],
+            attrKey: 'data-air'
         }
     };
 
@@ -310,51 +353,9 @@ define(function (require) {
     }
 
     /**
-     * 对目标字符串进行格式化
-     * from tangram
-     *
-     * @param  {String} source 目标字符串
-     * @param  {Object|String} opts   提供相应数据的对象或多个字符串
-     */
-    function bFormat(source, opts) {
-        source = String(source);
-        var data = Array.prototype.slice.call(arguments,1);
-        var toString = Object.prototype.toString;
-        if(data.length){
-            data =
-                data.length == 1
-                    ?
-            // ie 下 Object.prototype.toString.call(null) == '[object Object]'
-                    (
-                        opts !== null
-                            && (/\[object Array\]|\[object Object\]/
-                                    .test(toString.call(opts)))
-                        ?
-                        opts
-                        :
-                        data
-                    )
-                    :
-                    data;
-            return source.replace(
-                /#\{(.+?)\}/g,
-                function (match, key) {
-                    var replacer = data[key];
-                    // chrome 下 typeof /a/ == 'function'
-                    if ('[object Function]' == toString.call(replacer)) {
-                        replacer = replacer(key);
-                    }
-                    return ('undefined' == typeof replacer ? '' : replacer);
-                }
-            );
-        }
-        return source;
-    }
-
-    /**
      * from baidu.json.parse
      */
-    function parseJson (data) {
+    function parseJson(data) {
         return (new Function('return (' + data + ')'))();
     }
 
@@ -424,9 +425,10 @@ define(function (require) {
     }
 
     // 根据数据，渲染模板
-    function format (type, obj) {
+    function format(type, obj) {
         obj = obj || {};
-        return bFormat(TPL[type], obj);
+        // return bFormat(TPL[type], obj);
+        return $.format(TPL[type], obj);
     }
 
     /**
@@ -436,7 +438,7 @@ define(function (require) {
      * @param {String} text 链接文本
      * @return {String} 返回拼装好的html
      */
-    function dataFormatForA (obj, text) {
+    function dataFormatForA(obj, text) {
         // 格式后数据
         var formatObj = {};
         // 返回的html
@@ -486,7 +488,7 @@ define(function (require) {
      * @param {Object} obj 新样式数据
      * @return {String} 返回拼装好的html
      */
-    function dataForamtForRow (type, obj) {
+    function dataForamtForRow(type, obj) {
         var html = '';
         if (obj) {
             // 格式化链接数据
@@ -507,7 +509,7 @@ define(function (require) {
      * @param {jQuery} ele dom元素
      * @param {String} type dom元素的指定属性
      */
-    function getDataFromAttr (ele, type) {
+    function getDataFromAttr(ele, type) {
         // 获取元素指定属性的值
         var attr = ele.attr(type);
         // 返回json对象
@@ -520,7 +522,7 @@ define(function (require) {
      * @param {Object} json v身份数据
      * @return {String} 返回拼装好的标题html
      */
-    function authBodyHtml (json) {
+    function authBodyHtml(json) {
         // 医疗 html
         var medical = dataForamtForRow('medical', json.medical);
 
@@ -540,6 +542,9 @@ define(function (require) {
                 );
             }
         }
+
+        // 信誉v，用的是 identity 的数据
+        var credit = dataForamtForRow('credit', json.identity);
 
         // 个人加v html
         var personal;
@@ -561,7 +566,8 @@ define(function (require) {
             'list',
             {
                 medical: medical,
-                identity: identity,
+                // identity: identity,
+                credit: credit,
                 airline: airline,
                 dfa: dfa,
                 personal: personal
@@ -579,7 +585,7 @@ define(function (require) {
      * @param  {Object} json v身份数据
      * @return {string}      返回拼装好的标题html
      */
-    function commitmentBodyHtml (json) {
+    function commitmentBodyHtml(json) {
         var itemHtml = '';
 
         for (var key in json) {
@@ -604,23 +610,51 @@ define(function (require) {
     }
 
     /**
-     * 检测大搜索页面中bds.se.tip对象
+     * 渲染浮层
+     *
+     * @param  {String} tipType 浮层类型
+     * @param  {Object} params 参数
      */
-    var checkTipComponentTimer;
-    function checkTipComponent (opts) {
-        if (!bds || !bds.se || !bds.se.tip) {
-            checkTipComponentTimer = setTimeout(function () {
-                checkTipComponent(opts);
-            }, 10);
-        }
-        else {
-            checkTipComponentTimer && clearTimeout(checkTipComponentTimer);
-            renderTip('identity', opts);
-            renderTip('coupon', opts);
-            renderTip('tel', opts);
-            renderTip('commitment', opts);
-            renderTip('med', opts);
-            renderTip('air', opts);
+    function renderTip(tipType, params) {
+        // 获取当前tipType的dom节点集合
+        var domList = $('.' + params.clsList.join(',.'));
+
+        // 获取当前tipType获取数据的dom的属性名
+        var attrKey = params.attrKey;
+
+        // 获取当前tipType的标题
+        var tipTitle = params.tipTitle;
+
+        for (var i = 0, len = domList.length; i < len; i++) {
+            var $el = $(domList[i]);
+            if (tipType !== 'identity') {
+                var $parentDom = $el.parent();
+                if (
+                    $parentDom.length
+                    &&
+                    $parentDom.hasClass('EC_PP')
+                ) {
+                    var tip = new bds.se.tip({
+                        target: $el[0]
+                    });
+                    tip.onShow = bind(doShow, tip, tipType, attrKey, tipTitle);
+                }
+            }
+            else {
+                // 筛选商业结果
+                if (
+                    $el.parents('.EC_ppim_top').length
+                    ||
+                    $el.parents('.EC_im').length
+                    ||
+                    $el.parents('.ec_pp_top').length
+                ) {
+                    var tip = new bds.se.tip({
+                        target: $el[0]
+                    });
+                    tip.onShow = bind(doShow, tip, tipType, attrKey);
+                }
+            }
         }
     }
 
@@ -631,7 +665,7 @@ define(function (require) {
      * @param  {String} attrKey  用于获取dom属性的key
      * @param  {?String} tipTitle 浮层里面的标题
      */
-    function doShow (tipType, attrKey, tipTitle) {
+    function doShow(tipType, attrKey, tipTitle) {
         if (tipType === 'identity') {
             sendLog(tipType);
         }
@@ -641,19 +675,46 @@ define(function (require) {
             me.op.offset = conf.offset[tipType];
             var triggerEl = me.getTarget();
             var $triggerEl = $(triggerEl);
-            if ($triggerEl.attr('data-tip-limite')) {
-                var rightContainerOffset = parseInt(
-                    $('#ec_im_container').position().left,
-                    10
-                );
 
+            var triggerElWidth = $triggerEl.width();
+            if (isNaN(triggerElWidth)) {
+                triggerElWidth = 0;
+            }
+
+            if (triggerElWidth > 20) {
+                me.op.arrow.offset = triggerElWidth / 2;
+            }
+
+            // 右侧im的浮层居左对齐
+            if ($triggerEl.attr('data-tip-limite')) {
+                // 参照的dom
+                // 以每个v标的父`.EC_im`节点作为参照
+                var referenceDom = $triggerEl.parents('.EC_im');
+
+                // 参照dom的left
+                var referenceLeft =
+                    parseInt(
+                        referenceDom.position().left,
+                        10
+                    );
+
+                // 参照dom的width
+                var referenceWidth =
+                    parseInt(
+                        referenceDom.width(),
+                        10
+                    );
+
+                // v标的偏移
                 var domOffset = parseInt(
                     $triggerEl.position().left,
                     10
                 );
 
                 var sub =
-                    Math.abs(rightContainerOffset - domOffset);
+                    Math.abs(
+                        (referenceLeft + referenceWidth - TIPWIDTH) - domOffset
+                    );
 
                 me.op.offset = {
                     x: sub,
@@ -662,55 +723,61 @@ define(function (require) {
 
                 me.op.arrow = {
                     has :  1,
-                    offset : sub
+                    // offset : sub
+                    offset : triggerElWidth > 20
+                                ? sub + triggerElWidth / 3
+                                : sub
                 };
+
             }
+
+            // 浮层的内容
+            var tipContent = '';
 
             var data = getDataFromAttr($triggerEl, attrKey);
 
-            if (tipType === 'identity') {
-                var url = $triggerEl.attr('href');
-                if (data.identity) {
-                    if (data.identity.a) {
-                        if (data.identity.a.url) {
-                            data.identity.a.url = url;
-                        }
+            switch (tipType) {
+                case 'identity':
+                    var url = $triggerEl.attr('href');
+                    if (
+                        data.identity
+                        &&
+                        data.identity.a
+                        &&
+                        !data.identity.a.url
+                    ) {
+                        data.identity.a.url = url;
                     }
-                }
-                if (data.personal) {
-                    if (data.personal.a) {
-                        if (data.personal.a.url) {
-                            data.personal.a.url = url;
-                        }
+                    if (
+                        data.personal
+                        &&
+                        data.personal.a
+                        &&
+                        !data.personal.a.url
+                    ) {
+                        data.personal.a.url = url;
                     }
-                }
-                var tipContent = authBodyHtml(data);
-                me.setTitle(data.title);
-                me.setContent(tipContent);
-            }
-            else {
-                var tipContent;
-                if (tipType === 'commitment') {
+                    tipContent = authBodyHtml(data);
+                    me.setTitle(data.title);
+                    break;
+                case 'commitment':
                     tipContent = commitmentBodyHtml(data);
-                }
-                else if (tipType === 'med') {
+                    break;
+                case 'med':
+                    var medContent = data.content;
+                    var aContent = dataFormatForA(data.a, data.linkLabel);
+                    data.content = medContent.replace(/\[linkLabel]/, aContent);
                     tipContent = format(tipType, data);
                     me.setTitle(zhengguiyaopinxiaoshouwangzhan);
-                }
-                else if (tipType === 'air') {
+                    break;
+                case 'air':
+                    var airContent = data.content;
+                    var aContent = dataFormatForA(data.a, data.linkLabel);
+                    data.content = airContent.replace(/\[linkLabel]/, aContent);
                     tipContent = format(tipType, data);
                     me.setTitle(zhengguiwangshangxiaoshouwangzhan);
-                }
-                else {
-                    tipContent = format(tipType, data);
-                    if (tipTitle) {
-                        me.setTitle(tipTitle);
-                    }
-                }
-
-                me.setContent(tipContent);
-
-                if (tipType === 'coupon') {
+                    break;
+                case 'coupon':
                     var aChildren = me.getDom().find('a');
                     var aList = [];
                     for (
@@ -726,88 +793,58 @@ define(function (require) {
                             aList.push(aChildren[j]);
                         }
                     }
-
                     if (aList.length) {
                         E.pl.ck(aList, E.pl.imTimesign);
                     }
-                }
+                case 'tel':
+                default:
+                    tipContent = format(tipType, data);
+                    tipTitle && me.setTitle(tipTitle);
             }
+            me.setContent(tipContent);
+
+            // 只有setContent后tip.getDom才会取到设置进去的content
+            if (tipType === 'identity') {
+                if (data[tipType] && data[tipType].process) {
+
+                    var processValue = data[tipType].process;
+                    var processLevel = data[tipType].process_level;
+
+                    A.use(
+                        'honourCard',
+                        function () {
+                            A.ui.honourCard(
+                                me.getDom().find('.EC-credit')[0],
+                                data[tipType].a.url,
+                                processLevel,
+                                processValue,
+                                data[tipType].a
+                            )
+                        }
+                    );
+                }
+
+            }
+
             me.alreadyRender = true;
         }
     }
 
     /**
-     * 渲染浮层
-     *
-     * @param  {String} type 浮层类型
-     * @param  {Object} opts 参数
+     * 检测大搜索页面中bds.se.tip对象
      */
-    function renderTip (type, opts) {
-        var domList;    // icon节点集合
-        var tipTitle;   // tip的title
-        var attrKey;    // 节点dom属性的key
-
-        switch (type) {
-            case 'identity':
-                domList = $('.c-icon-v, .c-icon-high-v, .c-icon-person');
-                attrKey = 'data-renzheng';
-                break;
-            case 'coupon':
-                domList = $('.c-icon-hui');
-                tipTitle = youhuixiangqing + '：';
-                attrKey = 'data-coupon';
-                break;
-            case 'tel':
-                domList = $('.c-icon-phone');
-                tipTitle = zixundianhua + '：';
-                attrKey = 'data-phone';
-                break;
-            case 'commitment':
-                domList = $('.c-icon-nuo');
-                attrKey = 'data-commitment';
-                break;
-            case 'med':
-                domList = $('.c-icon-med');
-                attrKey = 'data-med';
-                break;
-            case 'air':
-                domList = $('.c-icon-air');
-                attrKey = 'data-air';
-                break;
-            default:
-                break;
+    var checkTipComponentTimer;
+    function checkTipComponent() {
+        if (!bds || !bds.se || !bds.se.tip) {
+            checkTipComponentTimer = setTimeout(function () {
+                checkTipComponent();
+            }, 10);
         }
-
-        for (var i = 0, len = domList.length; i < len; i++) {
-            var $el = $(domList[i]);
-            if (type !== 'identity') {
-                var $parentDom = $el.parent();
-                if (
-                    $parentDom.length
-                    &&
-                    $parentDom.hasClass('EC_PP')
-                ) {
-                    var tip = new bds.se.tip({
-                        target: $el[0]
-                    });
-                    tip.onShow = bind(doShow, tip, type, attrKey, tipTitle);
-                }
-            }
-            else {
-                // 筛选商业结果
-                if (
-                    $el.parents('.EC_ppim_top').length
-                    ||
-                    $el.parents('.EC_im').length
-                    ||
-                    $el.parents('.ec_pp_top').length
-                ) {
-                    var tip = new bds.se.tip({
-                        target: $el[0]
-                    });
-                    tip.onShow = bind(doShow, tip, type, attrKey);
-                }
-            }
+        else {
+            checkTipComponentTimer && clearTimeout(checkTipComponentTimer);
+            $.each(tipTypeConf, function (key, value) {
+                renderTip(key, value);
+            });
         }
     }
 
@@ -817,7 +854,7 @@ define(function (require) {
     function init(opts) {
         $(document).ready(function () {
             $.extend(true, conf, opts || {});
-            checkTipComponent(conf);
+            checkTipComponent();
         });
     }
 
