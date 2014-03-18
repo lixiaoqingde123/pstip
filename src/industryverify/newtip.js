@@ -712,23 +712,43 @@ define(function (require) {
                     10
                 );
 
-                var sub =
-                    Math.abs(
-                        (referenceLeft + referenceWidth - TIPWIDTH) - domOffset
-                    );
+                var sub;
 
-                me.op.offset = {
-                    x: sub,
-                    y: 25
-                };
+                if (
+                    $triggerEl.hasClass('c-icon-med')
+                    ||
+                    $triggerEl.hasClass('c-icon-air')
+                ) {
+                    sub = Math.abs(referenceLeft - domOffset);
+                    me.op.offset = {
+                        x: sub,
+                        y: 25
+                    };
 
-                me.op.arrow = {
-                    has :  1,
-                    // offset : sub
-                    offset : triggerElWidth > 20
-                                ? sub + triggerElWidth / 3
-                                : sub
-                };
+                    me.op.arrow = {
+                        has :  1,
+                        offset : sub
+                    };
+                }
+                else {
+                    sub =
+                        Math.abs(
+                            (referenceLeft + referenceWidth - TIPWIDTH) - domOffset
+                        );
+
+                    me.op.offset = {
+                        x: sub,
+                        y: 25
+                    };
+
+                    me.op.arrow = {
+                        has :  1,
+                        // offset : sub
+                        offset : triggerElWidth > 20
+                                    ? sub + triggerElWidth / 3
+                                    : sub
+                    };
+                }
 
             }
 
