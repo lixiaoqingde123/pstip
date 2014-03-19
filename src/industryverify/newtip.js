@@ -8,9 +8,6 @@ define(function (require) {
     // 已经通过
     var yijingtonguo = '\u5df2\u7ecf\u901a\u8fc7';
 
-    // 具有
-    var juyou = '\u5177\u6709';
-
     // 百度信誉认证
     var baiduxinyurenzheng = '\u767e\u5ea6\u4fe1\u8a89\u8ba4\u8bc1';
 
@@ -48,23 +45,10 @@ define(function (require) {
         list : ''
             + '<div class="c-tip-cer">'
             +     '<ul>'
-            // +         '#{medical}#{airline}#{dfa}#{identity}#{personal}'
-            // +         '#{credit}#{medical}#{dfa}#{airline}'
             +         '#{credit}'
             +         '#{identity}#{personal}'
             +     '</ul>'
             + '</div>',
-
-        // 医疗模板
-        // medical : ''
-        //     // + '<li class="c-tip-item-i">'
-        //     // +     '<i class="c-icon c-icon-right '
-        //     // +                'c-gap-icon-right-small c-tip-item-icon"></i>'
-        //     // +     '<span>#{text}</span>'
-        //     // + '</li>',
-        //     + '<li>'
-        //     +     '<span>#{text}</span>'
-        //     + '</li>',
 
         // 企业v模板
         identity : ''
@@ -87,7 +71,6 @@ define(function (require) {
         // 信誉v
         credit: ''
             + '<li class="EC-credit">'
-            // +     '郭勇组件的占位符'
             + '</li>',
 
         // 个人v模板
@@ -107,28 +90,6 @@ define(function (require) {
             + yijingtonguo
             +     '#{text}#{a}'
             +'</li>',
-
-        // 航协模板
-        // airline : ''
-        //     // + '<li class="c-tip-item-i">'
-        //     // +     '<img height=16 width=16 class="c-customicon '
-        //     // +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
-        //     // + juyou
-        //     // + '#{a}的#{text}</li>',
-        //     + '<li>'
-        //     + juyou
-        //     + '#{a}的#{text}</li>',
-
-        // 药监局模板
-        // dfa : ''
-        //     // + '<li class="c-tip-item-i">'
-        //     // +     '<img height=16 width=16 class="c-customicon '
-        //     // +         'c-gap-icon-right-small c-tip-item-icon" src="#{img}">'
-        //     // +     '#{text}'
-        //     // + '</li>',
-        //     + '<li>'
-        //     +     '#{text}'
-        //     + '</li>',
 
         // 惠模板
         coupon : ''
@@ -242,8 +203,8 @@ define(function (require) {
     /**
      * ps页面上需要出的浮层类型的配置
      * @property {Array} clsList   该类型的tip的class集合
-     * @property {String} attrKey   该类型的tip获取数据的dom的属性名
-     * @property {?String} tipTitle   该类型的tip的标题
+     * @property {string} attrKey   该类型的tip获取数据的dom的属性名
+     * @property {?string} tipTitle   该类型的tip的标题
      */
     var tipTypeConf = {
         // 认证
@@ -253,7 +214,7 @@ define(function (require) {
         },
         // 惠
         coupon: {
-            clsList: ['c-icon-hui', 'asdsa'],
+            clsList: ['c-icon-hui'],
             attrKey: 'data-coupon',
             tipTitle: youhuixiangqing + '：'
         },
@@ -271,12 +232,14 @@ define(function (require) {
         // 药监
         med: {
             clsList: ['c-icon-med'],
-            attrKey: 'data-med'
+            attrKey: 'data-med',
+            tipTitle: zhengguiyaopinxiaoshouwangzhan
         },
         // 航协
         air: {
             clsList: ['c-icon-air'],
-            attrKey: 'data-air'
+            attrKey: 'data-air',
+            tipTitle: zhengguiwangshangxiaoshouwangzhan
         }
     };
 
@@ -284,7 +247,7 @@ define(function (require) {
      * 对字符串进行%#&+=以及和\s匹配的所有字符进行url转义
      * from tangram
      *
-     * @param  {String} source 需要转义的字符串
+     * @param  {string} source 需要转义的字符串
      */
     function escapeSymbol(source) {
         return String(source).replace(
@@ -336,7 +299,7 @@ define(function (require) {
             return escapeSymbol(value);
         };
 
-        $.each(json, function(key, item){
+        $.each(json, function (key, item) {
             // 这里只考虑item为数组、字符串、数字类型，不考虑嵌套的object
             if ($.isArray(item)) {
                 itemLen = item.length;
@@ -362,8 +325,6 @@ define(function (require) {
 
     /**
      * 发送日志地址
-     *
-     * @type {String}
      */
     var sendLogUrl = '';
 
@@ -392,7 +353,7 @@ define(function (require) {
     /**
      * 显示浮层时，发送日志
      *
-     * @param {String} logType 日志类型：
+     * @param {string} logType 日志类型：
      * v身份： identity
      */
     function sendLog(logType) {
@@ -428,7 +389,6 @@ define(function (require) {
     // 根据数据，渲染模板
     function format(type, obj) {
         obj = obj || {};
-        // return bFormat(TPL[type], obj);
         return $.format(TPL[type], obj);
     }
 
@@ -436,8 +396,8 @@ define(function (require) {
      * 格式化链接数据
      *
      * @param {Object} obj 链接数据
-     * @param {String} text 链接文本
-     * @return {String} 返回拼装好的html
+     * @param {string} text 链接文本
+     * @return {string} 返回拼装好的html
      */
     function dataFormatForA(obj, text) {
         // 格式后数据
@@ -477,17 +437,17 @@ define(function (require) {
             };
 
             html = format('a', formatObj);
-
         }
+
         return html;
     }
 
     /**
      * 格式化新样式数据
      *
-     * @param {String} type 新样式类型
+     * @param {string} type 新样式类型
      * @param {Object} obj 新样式数据
-     * @return {String} 返回拼装好的html
+     * @return {string} 返回拼装好的html
      */
     function dataForamtForRow(type, obj) {
         var html = '';
@@ -508,7 +468,7 @@ define(function (require) {
      * 获取元素指定属性的值，并返回json格式
      *
      * @param {jQuery} ele dom元素
-     * @param {String} type dom元素的指定属性
+     * @param {string} type dom元素的指定属性
      */
     function getDataFromAttr(ele, type) {
         // 获取元素指定属性的值
@@ -521,12 +481,9 @@ define(function (require) {
      * v身份新样式html
      *
      * @param {Object} json v身份数据
-     * @return {String} 返回拼装好的标题html
+     * @return {string} 返回拼装好的标题html
      */
     function authBodyHtml(json) {
-        // 医疗 html
-        // var medical = dataForamtForRow('medical', json.medical);
-
         // 企业加v html
         var identity;
         if (json.identity) {
@@ -549,28 +506,20 @@ define(function (require) {
 
         // 个人加v html
         var personal;
-        if (json.personal && json.personal.img) {
-            personal = dataForamtForRow('personalImg', json.personal);
+        if (json.personal) {
+            if (json.personal.img) {
+                personal = dataForamtForRow('personalImg', json.personal);
+            }
+            else {
+                personal = dataForamtForRow('personal', json.personal);
+            }
         }
-        else {
-            personal = dataForamtForRow('personal', json.personal);
-        }
-
-        // // 航协 html
-        // var airline = dataForamtForRow('airline', json.airline);
-
-        // // 药监局 html
-        // var dfa = dataForamtForRow('dfa', json.dfa);
 
         // 所有新样式，有则显示，没有不显示
         var list = format(
             'list',
             {
-                // medical: medical,
-                // identity: identity,
                 credit: credit,
-                // airline: airline,
-                // dfa: dfa,
                 personal: personal
             }
         );
@@ -613,7 +562,7 @@ define(function (require) {
     /**
      * 渲染浮层
      *
-     * @param  {String} tipType 浮层类型
+     * @param  {string} tipType 浮层类型
      * @param  {Object} params 参数
      */
     function renderTip(tipType, params) {
@@ -653,18 +602,97 @@ define(function (require) {
                     var tip = new bds.se.tip({
                         target: $el[0]
                     });
-                    tip.onShow = bind(doShow, tip, tipType, attrKey);
+                    tip.onShow = bind(doShow, tip, tipType, attrKey, tipTitle);
                 }
             }
         }
     }
 
     /**
+     * 调整浮层居左或者居右
+     *
+     * @param  {HTMLElement} $iconDom 当前的v标节点
+     * @param  {Object} tip      当前tip对象
+     */
+    function adjustDirection($iconDom, tip) {
+        // v标的宽度
+        var iconWidth = $iconDom.width();
+        if (isNaN(iconWidth)) {
+            iconWidth = 0;
+        }
+
+        if (iconWidth > 20) {
+            tip.op.arrow.offset = iconWidth / 2;
+        }
+
+        // 参照的dom
+        // 以每个v标的父`.EC_im`节点作为参照
+        var referenceDom = $iconDom.parents('.EC_im');
+
+        // 参照dom的left
+        var referenceLeft =
+            parseInt(
+                referenceDom.position().left,
+                10
+            );
+
+        // 参照dom的width
+        var referenceWidth =
+            parseInt(
+                referenceDom.width(),
+                10
+            );
+
+        // v标的偏移
+        var domOffset = parseInt(
+            $iconDom.position().left,
+            10
+        );
+
+        var sub;
+
+        if (
+            $iconDom.hasClass('c-icon-med')
+            ||
+            $iconDom.hasClass('c-icon-air')
+        ) {
+            sub = Math.abs(referenceLeft - domOffset);
+            tip.op.offset = {
+                x: sub,
+                y: 25
+            };
+
+            tip.op.arrow = {
+                has :  1,
+                offset : sub
+            };
+        }
+        else {
+            sub =
+                Math.abs(
+                    (referenceLeft + referenceWidth - TIPWIDTH) - domOffset
+                );
+
+            tip.op.offset = {
+                x: sub,
+                y: 25
+            };
+
+            tip.op.arrow = {
+                has :  1,
+                offset : iconWidth > 20
+                            ? sub + iconWidth / 3
+                            : sub
+            };
+        }
+    }
+
+    /**
      * tip浮层显示时的回调
      *
-     * @param  {String} tipType  浮层类型
-     * @param  {String} attrKey  用于获取dom属性的key
-     * @param  {?String} tipTitle 浮层里面的标题
+     * @param  {string} tipType  浮层类型
+     * @param  {string} attrKey  用于获取dom属性的key
+     * @param  {?string} tipTitle 浮层里面的标题
      */
     function doShow(tipType, attrKey, tipTitle) {
         if (tipType === 'identity') {
@@ -674,163 +702,52 @@ define(function (require) {
         var me = this;
         if (!me.alreadyRender) {
             me.op.offset = conf.offset[tipType];
-            var triggerEl = me.getTarget();
-            var $triggerEl = $(triggerEl);
-
-            var triggerElWidth = $triggerEl.width();
-            if (isNaN(triggerElWidth)) {
-                triggerElWidth = 0;
-            }
-
-            if (triggerElWidth > 20) {
-                me.op.arrow.offset = triggerElWidth / 2;
-            }
+            var $triggerEl = $(me.getTarget());
 
             // 右侧im的浮层居左对齐
             if ($triggerEl.attr('data-tip-limite')) {
-                // 参照的dom
-                // 以每个v标的父`.EC_im`节点作为参照
-                var referenceDom = $triggerEl.parents('.EC_im');
-
-                // 参照dom的left
-                var referenceLeft =
-                    parseInt(
-                        referenceDom.position().left,
-                        10
-                    );
-
-                // 参照dom的width
-                var referenceWidth =
-                    parseInt(
-                        referenceDom.width(),
-                        10
-                    );
-
-                // v标的偏移
-                var domOffset = parseInt(
-                    $triggerEl.position().left,
-                    10
-                );
-
-                var sub;
-
-                if (
-                    $triggerEl.hasClass('c-icon-med')
-                    ||
-                    $triggerEl.hasClass('c-icon-air')
-                ) {
-                    sub = Math.abs(referenceLeft - domOffset);
-                    me.op.offset = {
-                        x: sub,
-                        y: 25
-                    };
-
-                    me.op.arrow = {
-                        has :  1,
-                        offset : sub
-                    };
-                }
-                else {
-                    sub =
-                        Math.abs(
-                            (referenceLeft + referenceWidth - TIPWIDTH) - domOffset
-                        );
-
-                    me.op.offset = {
-                        x: sub,
-                        y: 25
-                    };
-
-                    me.op.arrow = {
-                        has :  1,
-                        // offset : sub
-                        offset : triggerElWidth > 20
-                                    ? sub + triggerElWidth / 3
-                                    : sub
-                    };
-                }
-
+                adjustDirection($triggerEl, me);
             }
+
+            var data = getDataFromAttr($triggerEl, attrKey);
 
             // 浮层的内容
             var tipContent = '';
 
-            var data = getDataFromAttr($triggerEl, attrKey);
-
-            switch (tipType) {
-                case 'identity':
-                    var url = $triggerEl.attr('href');
-                    if (
-                        data.identity
-                        &&
-                        data.identity.a
-                        &&
-                        !data.identity.a.url
-                    ) {
-                        data.identity.a.url = url;
-                    }
-                    if (
-                        data.personal
-                        &&
-                        data.personal.a
-                        &&
-                        !data.personal.a.url
-                    ) {
-                        data.personal.a.url = url;
-                    }
-                    tipContent = authBodyHtml(data);
-                    me.setTitle(data.title);
-                    break;
-                case 'commitment':
-                    tipContent = commitmentBodyHtml(data);
-                    break;
-                case 'med':
-                    var medContent = data.content;
-                    var aContent = dataFormatForA(data.a, data.linkLabel);
-                    data.content = medContent.replace(/\[linkLabel]/, aContent);
-                    tipContent = format(tipType, data);
-                    me.setTitle(zhengguiyaopinxiaoshouwangzhan);
-                    break;
-                case 'air':
-                    var airContent = data.content;
-                    var aContent = dataFormatForA(data.a, data.linkLabel);
-                    data.content = airContent.replace(/\[linkLabel]/, aContent);
-                    tipContent = format(tipType, data);
-                    me.setTitle(zhengguiwangshangxiaoshouwangzhan);
-                    break;
-                case 'coupon':
-                    var aChildren = me.getDom().find('a');
-                    var aList = [];
-                    for (
-                        var j = 0, aLen = aChildren.length;
-                        j < aLen;
-                        j++
-                    ) {
-                        if (
-                            aChildren[j].tagName.toLowerCase()
-                            ===
-                            'a'
-                        ) {
-                            aList.push(aChildren[j]);
-                        }
-                    }
-                    if (aList.length) {
-                        E.pl.ck(aList, E.pl.imTimesign);
-                    }
-                case 'tel':
-                default:
-                    tipContent = format(tipType, data);
-                    tipTitle && me.setTitle(tipTitle);
+            // 承诺保障浮层内容
+            if (tipType === 'commitment') {
+                tipContent = commitmentBodyHtml(data);
+                me.setContent(tipContent);
             }
-            me.setContent(tipContent);
+            // 航协、药监浮层内容
+            else if (tipType === 'air' || tipType === 'med') {
+                var content = data.content || '';
+                var hrefContent = dataFormatForA(data.a, data.linkLabel);
+                data.content = content.replace(/\[linkLabel]/, hrefContent);
+                tipContent = format(tipType, data);
+                me.setTitle(tipTitle);
+                me.setContent(tipContent);
+            }
+            else if (tipType === 'identity') {
+                var url = $triggerEl.attr('href');
+                data.identity
+                    && data.identity.a
+                    && !data.identity.a.url
+                    && (data.identity.a.url = url);
 
-            // 只有setContent后tip.getDom才会取到设置进去的content
-            if (tipType === 'identity') {
+                data.personal
+                    && data.personal.a
+                    && !data.personal.a.url
+                    && (data.personal.a.url = url);
+
+                tipContent = authBodyHtml(data);
+                me.setTitle(data.title);
+                me.setContent(tipContent);
+
+                // 只有setContent后tip.getDom才会取到设置进去的content
                 if (data[tipType] && data[tipType].process) {
-
                     var processValue = data[tipType].process;
                     var processLevel = data[tipType].process_level;
-
                     A.use(
                         'honourCard',
                         function () {
@@ -844,7 +761,34 @@ define(function (require) {
                         }
                     );
                 }
+            }
 
+            else if (tipType === 'coupon') {
+                var aChildren = me.getDom().find('a');
+                var aList = [];
+                for (
+                    var j = 0, aLen = aChildren.length;
+                    j < aLen;
+                    j++
+                ) {
+                    if (
+                        aChildren[j].tagName.toLowerCase()
+                        ===
+                        'a'
+                    ) {
+                        aList.push(aChildren[j]);
+                    }
+                }
+                if (aList.length) {
+                    E.pl.ck(aList, E.pl.imTimesign);
+                }
+                tipContent = format(tipType, data);
+                tipTitle && me.setTitle(tipTitle);
+                me.setContent(tipContent);
+            } else if (tipType === 'tel') {
+                tipContent = format(tipType, data);
+                tipTitle && me.setTitle(tipTitle);
+                me.setContent(tipContent);
             }
 
             me.alreadyRender = true;
