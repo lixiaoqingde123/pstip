@@ -699,7 +699,8 @@ define(function (require) {
                     $el.parents('.ec_pp_f').length
                 ) {
                     var tip = new bds.se.tip({
-                        target: $el[0]
+                        target: $el.parent()[0]
+                        // target: $el[0]
                     });
                     tip.onShow = bind(doShow, tip, tipType, attrKey);
                 }
@@ -723,7 +724,8 @@ define(function (require) {
         if (!me.alreadyRender) {
             me.op.offset = conf.offset[tipType];
             var triggerEl = me.getTarget();
-            var $triggerEl = $(triggerEl);
+            // var $triggerEl = $(triggerEl);
+            var $triggerEl = $($(triggerEl).children()[0]);
 
             var triggerElWidth = $triggerEl.width();
             if (isNaN(triggerElWidth)) {
@@ -735,6 +737,7 @@ define(function (require) {
             }
 
             // 右侧im的浮层居左对齐
+            // var $triggerElChild = $($triggerEl.children()[0]);
             if ($triggerEl.attr('data-tip-limite')) {
                 // 参照的dom
                 // 以每个v标的父`.EC_im`节点作为参照
@@ -767,7 +770,7 @@ define(function (require) {
 
                 me.op.offset = {
                     x: sub,
-                    y: 25
+                    y: 30
                 };
 
                 me.op.arrow = {
@@ -775,7 +778,7 @@ define(function (require) {
                     // offset : sub
                     offset : triggerElWidth > 20
                                 ? sub + triggerElWidth / 3
-                                : sub
+                                : sub + 5
                 };
 
             }
@@ -783,6 +786,7 @@ define(function (require) {
             // 浮层的内容
             var tipContent = '';
 
+            // var data = getDataFromAttr($($triggerEl.children()[0]), attrKey);
             var data = getDataFromAttr($triggerEl, attrKey);
 
             switch (tipType) {
